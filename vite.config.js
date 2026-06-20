@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/landing-bakerfield/',
+  base: './',
   build: {
     minify: 'terser',
     cssMinify: 'lightningcss',

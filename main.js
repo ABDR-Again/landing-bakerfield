@@ -767,5 +767,10 @@ const tl = gsap.timeline({
     });
 
 
+    // Refresh ScrollTrigger after all assets are loaded
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
+
 }
 });
