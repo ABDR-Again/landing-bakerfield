@@ -16,6 +16,7 @@
   <noscript><link rel="stylesheet" href="./style.css"></noscript>
 </head>
 <body>
+  <main>
 
   <!-- Hero Section -->
   <section class="uw-h3-section">
@@ -23,7 +24,7 @@
       <!-- Desktop Image -->
       <source media="(min-width: 1024px)" srcset="./assets/optimized/hero-desktop.webp">
       <!-- Mobile Image -->
-      <img src="./assets/optimized/hero-mobile.webp" alt="Modern Home Architecture in Bakersfield">
+      <img fetchpriority="high" width="533" height="300" src="./assets/optimized/hero-mobile.webp" alt="Modern Home Architecture in Bakersfield">
     </picture>
     
     <div class="uw-h3-overlay"></div>
@@ -139,7 +140,7 @@
       <p class="uw-problem-desc">Selling the traditional way can feel overwhelming when time, money, or life changes create pressure. You're not alone—and you have options.</p>
       
       <div class="uw-problem-image-wrapper">
-        <img loading="lazy" src="./assets/optimized/problems.webp" alt="Modern house" class="uw-problem-image">
+        <img loading="lazy" width="364" height="364" src="./assets/optimized/problems.webp" alt="Modern house" class="uw-problem-image">
       </div>
     </div>
 
@@ -782,7 +783,7 @@
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
           </div>
           <div class="uw-comp2-cta-text">
-            <h4>Ready for a stress-free sale?</h4>
+            <h2>Ready for a stress-free sale?</h2>
             <p>Call or text us today for your no-obligation cash offer.</p>
           </div>
         </div>
@@ -1053,7 +1054,7 @@
           <label class="uw-hero-label">Selling Situation</label>
           <div class="uw-hero-input-container">
             <svg class="uw-hero-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-            <select class="uw-hero-select" id="uwSituation" required>
+            <select aria-label="Property Situation" class="uw-hero-select" id="uwSituation" required>
               <option value="" disabled selected>Select an option</option>
               <option value="sell-fast">Need to sell fast</option>
               <option value="probate">Probate / Inherited</option>
@@ -1070,7 +1071,7 @@
           <label class="uw-hero-label">Timeline</label>
           <div class="uw-hero-input-container">
             <svg class="uw-hero-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <select class="uw-hero-select" id="uwTimeline" required>
+            <select aria-label="Selling Timeline" class="uw-hero-select" id="uwTimeline" required>
               <option value="" disabled selected>Select an option</option>
               <option value="asap">ASAP</option>
               <option value="1-month">Within 1 month</option>
@@ -1138,6 +1139,7 @@
 </section>
 
 
+  </main>
   <script type="module" src="./main.js"></script>
 </body>
 </html>
