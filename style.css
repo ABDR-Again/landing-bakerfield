@@ -1986,6 +1986,17 @@ body {
       border-radius: 16px;
     }
 
+    /* ONLY show BHS card details on mobile, hide Traditional Agent details */
+    .uw-comp2-grid {
+      grid-template-columns: 1.4fr 1fr;
+      min-width: unset;
+    }
+
+    .uw-comp2-th.trad-header,
+    .uw-comp2-td.trad-cell {
+      display: none;
+    }
+
     .uw-comp2-td {
       padding: 1.25rem 1rem;
     }
@@ -4929,6 +4940,17 @@ body {
 
     .uw-comp2-table-wrapper {
       border-radius: 16px;
+    }
+
+    /* ONLY show BHS card details on mobile, hide Traditional Agent details */
+    .uw-comp2-grid {
+      grid-template-columns: 1.4fr 1fr;
+      min-width: unset;
+    }
+
+    .uw-comp2-th.trad-header,
+    .uw-comp2-td.trad-cell {
+      display: none;
     }
 
     .uw-comp2-td {
