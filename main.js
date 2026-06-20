@@ -5,38 +5,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
   /* =========================================
-     1. Hero Section Animations
+     1. Hero Section Animations Removed for Performance
      ========================================= */
-  const heroTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".uw-h3-section",
-      start: "top 80%",
-    }
-  });
+  // The hero section now loads instantly via CSS to prevent render-blocking delays
 
-  // Animate Heading & Text
-  heroTl.fromTo(".uw-h3-anim-text", 
-    { opacity: 0, y: 30 }, 
-    { opacity: 1, y: 0, duration: 0.7, stagger: 0.2, ease: "power3.out" }
-  )
-  // Animate Buttons
-  .fromTo(".uw-h3-anim-btn", 
-    { opacity: 0, y: 20 }, 
-    { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-    "-=0.2"
-  )
-  // Animate Background / Mobile Image
-  .fromTo(".uw-h3-anim-img", 
-    { opacity: 0, scale: 1.05 }, 
-    { opacity: 1, scale: 1, duration: 1, ease: "power2.out" },
-    "-=0.1"
-  )
-  // Animate Stat Icons & Text one by one
-  .fromTo(".uw-h3-anim-stat", 
-    { opacity: 0, x: -20 }, 
-    { opacity: 1, x: 0, duration: 0.5, stagger: 0.15, ease: "power2.out" },
-    "-=0.6"
-  );
 
   
 /* --- problem_section.html --- */
