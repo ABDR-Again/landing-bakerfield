@@ -1,0 +1,29 @@
+# Ignore everything by default
+*
+
+# Allow directories to be traversed
+!*/
+
+# Allow specific root files
+!.gitignore
+!index.html
+!style.css
+!critical.css
+!main.js
+
+# Ignore specific asset directories we don't need
+assets/images/
+
+# Allow specific fonts
+!assets/fonts/Inter-Regular.woff2
+!assets/fonts/Inter-Medium.woff2
+!assets/fonts/Inter-SemiBold.woff2
+!assets/fonts/Inter-Bold.woff2
+
+# Allow webp images
+!assets/optimized/
+!assets/optimized/*.webp
+
+# Standard node ignores
+node_modules/
+dist/
