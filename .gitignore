@@ -14,6 +14,7 @@
 !package-lock.json
 !vite.config.js
 !.github/
+!.github/workflows/deploy.yml
 
 # Ignore specific asset directories we don't need
 assets/images/
