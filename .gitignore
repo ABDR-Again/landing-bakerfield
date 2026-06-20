@@ -10,6 +10,10 @@
 !style.css
 !critical.css
 !main.js
+!package.json
+!package-lock.json
+!vite.config.js
+!.github/
 
 # Ignore specific asset directories we don't need
 assets/images/
