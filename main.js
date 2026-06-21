@@ -242,88 +242,32 @@ const tl = gsap.timeline({
       `;
     };
 
-    // 3. Render Initial State
-    const featuredCard = document.getElementById("uwFeaturedCard");
-    const desktopSlots = document.querySelectorAll(".uw-rev-desktop-slot");
+    // 3. Initial State is now in HTML
+    const desktopGrid = document.getElementById("uwDesktopGrid");
     const mobileTrack = document.getElementById("uwMobileTrack");
+    const loadMoreBtn = document.getElementById("uwLoadMoreBtn");
 
-    // Populate Left Featured
-    featuredCard.innerHTML = generateCardHTML(reviewsData[0], true);
+    let currentReviewIndex = 5; // 0 to 4 are hardcoded in HTML
 
-    // Populate Desktop Right Grid (slots 0-3 get reviews 1-4)
-    desktopSlots.forEach((slot, index) => {
-      slot.innerHTML = generateCardHTML(reviewsData[index + 1]);
-    });
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        for (let i = currentReviewIndex; i < reviewsData.length; i++) {
+          const rev = reviewsData[i];
+          const newCard = document.createElement("div");
+          newCard.className = "uw-rev-card uw-anim-card";
+          newCard.innerHTML = generateCardHTML(rev);
+          
+          if (window.innerWidth > 767) {
+            desktopGrid.appendChild(newCard);
+          } else {
+            mobileTrack.appendChild(newCard);
+          }
 
-    // Populate Mobile Track (All reviews)
-    let mobileHTML = '';
-    reviewsData.forEach((rev, idx) => {
-      mobileHTML += `<div class="uw-rev-card uw-anim-card">${generateCardHTML(rev, idx === 0)}</div>`;
-    });
-    mobileTrack.innerHTML = mobileHTML;
-
-
-    // 4. Desktop Swapping Logic
-    let currentReviewPoolIndex = 5; // Next review to pull from the array
-    let targetSlotIndex = 0; // Which of the 4 slots to replace next
-
-    const swapReview = (direction) => {
-      if (window.innerWidth <= 767) return; // Let mobile track handle it natively
-
-      const slot = desktopSlots[targetSlotIndex];
-      const nextReview = reviewsData[currentReviewPoolIndex];
-
-      // GSAP Animation: Fade out, update content, fade in
-      gsap.to(slot, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-          slot.innerHTML = generateCardHTML(nextReview);
-          gsap.to(slot, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.4,
-            ease: "power2.out"
-          });
+          gsap.fromTo(newCard, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
         }
+        loadMoreBtn.style.display = "none";
       });
-
-      // Update indices for next click (round-robin)
-      if (direction === 'next') {
-        currentReviewPoolIndex = (currentReviewPoolIndex + 1) % reviewsData.length;
-        if (currentReviewPoolIndex === 0) currentReviewPoolIndex = 1; // skip featured
-        targetSlotIndex = (targetSlotIndex + 1) % 4;
-      } else {
-        currentReviewPoolIndex = (currentReviewPoolIndex - 1 + reviewsData.length) % reviewsData.length;
-        if (currentReviewPoolIndex === 0) currentReviewPoolIndex = reviewsData.length - 1;
-        targetSlotIndex = (targetSlotIndex - 1 + 4) % 4;
-      }
-    };
-
-
-    // 5. Button Listeners
-    const btnNext = document.getElementById("uwRevNext");
-    const btnPrev = document.getElementById("uwRevPrev");
-
-    btnNext.addEventListener('click', () => {
-      if (window.innerWidth <= 767) {
-        // Mobile Horizontal Scroll
-        mobileTrack.scrollBy({ left: mobileTrack.clientWidth, behavior: 'smooth' });
-      } else {
-        // Desktop Swap Animation
-        swapReview('next');
-      }
-    });
-
-    btnPrev.addEventListener('click', () => {
-      if (window.innerWidth <= 767) {
-        mobileTrack.scrollBy({ left: -mobileTrack.clientWidth, behavior: 'smooth' });
-      } else {
-        swapReview('prev');
-      }
-    });
+    }
 
     // 6. Initial GSAP Reveal Animations
     
@@ -738,6 +682,67 @@ const tl = gsap.timeline({
       }
     });
 
+    // 3. Hero Top Form Validation & Logic
+    const heroTopForm = document.getElementById("uwHeroTopForm");
+    if(heroTopForm) {
+      const topPhoneInput = heroTopForm.querySelector(".uw-phone-input");
+      const topEmailInput = heroTopForm.querySelector(".uw-email-input");
+      const topErrorMsg = heroTopForm.querySelector(".uw-hero-error-message");
+
+      const resetTopErrors = () => {
+        heroTopForm.querySelectorAll('.uw-hero-input, .uw-hero-select').forEach(el => {
+          el.classList.remove('is-invalid');
+        });
+        if(topErrorMsg) topErrorMsg.style.display = 'none';
+      };
+
+      heroTopForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        resetTopErrors();
+        let isValid = true;
+
+        const requiredInputs = heroTopForm.querySelectorAll('input[required], select[required]');
+        requiredInputs.forEach(input => {
+          if (!input.value.trim()) {
+            input.classList.add('is-invalid');
+            isValid = false;
+          }
+        });
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (topEmailInput && topEmailInput.value && !emailRegex.test(topEmailInput.value)) {
+          topEmailInput.classList.add('is-invalid');
+          isValid = false;
+        }
+
+        if (topPhoneInput && topPhoneInput.value && topPhoneInput.value.length < 10) {
+          topPhoneInput.classList.add('is-invalid');
+          isValid = false;
+        }
+
+        if (isValid) {
+          const btn = heroTopForm.querySelector('.uw-hero-submit');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = 'Sending...';
+          btn.style.backgroundColor = '#16a34a'; 
+          
+          setTimeout(() => {
+            btn.innerHTML = 'Sent Successfully!';
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.style.backgroundColor = '';
+              heroTopForm.reset();
+            }, 3000);
+          }, 1500);
+        } else {
+          if(topErrorMsg) topErrorMsg.style.display = 'block';
+          gsap.fromTo(heroTopForm, 
+            { x: -5 }, 
+            { x: 5, duration: 0.1, yoyo: true, repeat: 3, ease: "power1.inOut" }
+          );
+        }
+      });
+    }
 
     // Refresh ScrollTrigger after all assets are loaded
     window.addEventListener('load', () => {
