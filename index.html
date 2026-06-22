@@ -155,7 +155,6 @@
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: none;
 }
@@ -227,11 +226,10 @@
 /* Stats Bar (Desktop) */
 .uw-h3-stats-wrapper {
   background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
   border: 1px solid rgba(255,255,255,0.5);
   border-radius: 2rem;
   padding: 1.5rem 3rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08); /* Lighter shadow */
   margin-bottom: 2rem;
 }
 
@@ -409,48 +407,113 @@
   .uw-h3-mobile-footer svg { width: 16px; height: 16px; color: #4ade80; }
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(1.05); }
-  to { opacity: 1; transform: scale(1); }
+/* Specific transitions instead of transition: all */
+.uw-h3-btn {
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.uw-h3-anim-text {
-  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
-}
-.uw-h3-anim-text:nth-of-type(1) { animation-delay: 0s; }
-.uw-h3-anim-text:nth-of-type(2) { animation-delay: 0.15s; }
-.uw-h3-anim-text:nth-of-type(3) { animation-delay: 0.3s; }
-
-.uw-h3-anim-btn {
-  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  animation-delay: 0.4s;
-  opacity: 0;
+@media (max-width: 1024px) {
+  .uw-h3-picture { order: 4 !important; }
+  .uw-h3-stats-wrapper { order: 5 !important; }
+  .uw-h3-mobile-footer { order: 6 !important; }
+  .uw-h3-form-wrapper { order: 3; }
 }
 
-.uw-h3-anim-img {
-  animation: scaleIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  animation-delay: 0.2s;
-  opacity: 0;
+.uw-h3-form-wrapper {
+  background: rgba(255,255,255,0.95);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08); /* Lighter shadow */
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid rgba(255,255,255,0.5);
+  z-index: 10;
 }
 
-.uw-h3-anim-stat {
-  animation: fadeInRight 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
+@media (min-width: 1025px) {
+  .uw-h3-form-wrapper,
+  .uw-h3-stats-wrapper {
+    backdrop-filter: blur(8px);
+  }
 }
-.uw-h3-anim-stat:nth-child(1) { animation-delay: 0.6s; }
-.uw-h3-anim-stat:nth-child(2) { animation-delay: 0.75s; }
-.uw-h3-anim-stat:nth-child(3) { animation-delay: 0.9s; }
+
+.uw-h3-form-title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.uw-h3-form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.uw-h3-form-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.uw-hero-input, .uw-hero-select { 
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; 
+}
+
+.uw-hero-select {
+  background: white;
+}
+
+.uw-hero-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.uw-hero-input.is-invalid, .uw-hero-select.is-invalid { 
+  border-color: #ef4444 !important; 
+  background-color: #fef2f2; 
+}
+.uw-hero-input:hover, .uw-hero-select:hover { border-color: #9ca3af; }
+.uw-hero-input:focus, .uw-hero-select:focus { 
+  border-color: #111827 !important; 
+  outline: none; 
+  box-shadow: 0 0 0 3px rgba(17,24,39,0.1); 
+}
+.uw-hero-submit:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+  background-color: #1f2937 !important; 
+}
+.uw-hero-submit:active { 
+  transform: scale(0.96) translateY(0); 
+  box-shadow: none; 
+}
 
   </style>
+
+  <link rel="preload" as="image" href="./assets/optimized/hero-desktop.webp" media="(min-width: 1024px)" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/optimized/hero-mobile.webp" media="(max-width: 1023px)" fetchpriority="high">
 
   <!-- Rest of CSS lazy loaded -->
   <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -461,7 +524,7 @@
 
   <!-- Hero Section -->
   <section class="uw-h3-section">
-    <picture class="uw-h3-picture uw-h3-anim-img">
+    <picture class="uw-h3-picture">
       <!-- Desktop Image -->
       <source media="(min-width: 1024px)" srcset="./assets/optimized/hero-desktop.webp">
       <!-- Mobile Image -->
@@ -473,7 +536,7 @@
     <div class="uw-h3-container">
       
       <!-- Top Bar -->
-      <div class="uw-h3-topbar uw-h3-anim-text">
+      <div class="uw-h3-topbar">
         <div class="uw-h3-badge">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L4 9v12h16V9l-8-6zm0 2.5l5 3.75V19h-3v-5H10v5H7v-7.75l5-3.75z"/></svg>
           Bakersfield Home Solutions
@@ -484,28 +547,15 @@
         </div>
       </div>
 
-      <style>
-        @media (max-width: 1024px) {
-          .uw-h3-picture { order: 4 !important; }
-          .uw-h3-stats-wrapper { order: 5 !important; }
-          .uw-h3-mobile-footer { order: 6 !important; }
-          .uw-h3-form-wrapper { order: 3; }
-        }
-        .uw-hero-input, .uw-hero-select { transition: all 0.3s ease; }
-        .uw-hero-input.is-invalid, .uw-hero-select.is-invalid { border-color: #ef4444 !important; background-color: #fef2f2; }
-        .uw-hero-input:hover, .uw-hero-select:hover { border-color: #9ca3af; }
-        .uw-hero-input:focus, .uw-hero-select:focus { border-color: #111827 !important; outline: none; box-shadow: 0 0 0 3px rgba(17,24,39,0.1); }
-        .uw-hero-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); background-color: #1f2937 !important; }
-        .uw-hero-submit:active { transform: scale(0.96) translateY(0); box-shadow: none; }
-      </style>
+      <!-- Body styles moved to head critical CSS -->
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; width: 100%;">
         <!-- Main Text & Buttons -->
         <div class="uw-h3-content" style="flex: 1; min-width: 300px; margin-top: 2rem; margin-bottom: 2rem;">
-          <h1 class="uw-h3-title uw-h3-anim-text">Sell As-Is.<br>Move Forward Faster.</h1>
+          <h1 class="uw-h3-title">Sell As-Is.<br>Move Forward Faster.</h1>
           
-          <p class="uw-h3-desc uw-h3-anim-text">Bakersfield homeowners trust us for fair local cash offers, flexible closings, and a simple process with no repairs or fees.</p>
+          <p class="uw-h3-desc">Bakersfield homeowners trust us for fair local cash offers, flexible closings, and a simple process with no repairs or fees.</p>
           
-          <div class="uw-h3-buttons uw-h3-anim-btn">
+          <div class="uw-h3-buttons">
             <!-- Button mapped to tel: as requested -->
             <a href="tel:6614909992" class="uw-h3-btn primary">
               Get My Cash Offer
@@ -523,23 +573,22 @@
           </div>
         </div>
 
-        <!-- Hero Form -->
-        <div class="uw-h3-form-wrapper uw-h3-anim-img" style="background: rgba(255,255,255,0.95); padding: 1.5rem; border-radius: 1.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); z-index: 10;">
-          <h3 style="margin-bottom: 1rem; font-size: 1.25rem; font-weight: 700; color: #111827;">See What Your House Could Sell For</h3>
-          <form id="uwHeroTopForm" novalidate style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="uw-h3-form-wrapper">
+          <h3 class="uw-h3-form-title">See What Your House Could Sell For</h3>
+          <form id="uwHeroTopForm" novalidate class="uw-h3-form-col">
             
             <div>
-              <input type="text" class="uw-hero-input" placeholder="Property Address" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-family: inherit; font-size: 0.95rem; box-sizing: border-box;">
+              <input type="text" class="uw-hero-input" placeholder="Property Address" required>
             </div>
             
-            <div style="display: flex; gap: 0.75rem; width: 100%;">
-              <input type="text" class="uw-hero-input uw-name-input" placeholder="Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" style="flex: 1; min-width: 0; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-family: inherit; font-size: 0.95rem; box-sizing: border-box;">
-              <input type="tel" class="uw-hero-input uw-phone-input" placeholder="Phone" required oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="flex: 1; min-width: 0; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-family: inherit; font-size: 0.95rem; box-sizing: border-box;">
+            <div class="uw-h3-form-row">
+              <input type="text" class="uw-hero-input uw-name-input" placeholder="Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+              <input type="tel" class="uw-hero-input uw-phone-input" placeholder="Phone" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             
-            <div style="display: flex; gap: 0.75rem; width: 100%;">
-              <input type="email" class="uw-hero-input uw-email-input" placeholder="Email" required style="flex: 1; min-width: 0; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-family: inherit; font-size: 0.95rem; box-sizing: border-box;">
-              <select class="uw-hero-select" required style="flex: 1; min-width: 0; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-family: inherit; background: white; font-size: 0.95rem; box-sizing: border-box;">
+            <div class="uw-h3-form-row">
+              <input type="email" class="uw-hero-input uw-email-input" placeholder="Email" required>
+              <select class="uw-hero-select" required>
                 <option value="" disabled selected>Timeline</option>
                 <option value="asap">ASAP</option>
                 <option value="1-month">1 month</option>
@@ -549,7 +598,7 @@
             
             <span class="uw-hero-error-message" style="display: none; color: #ef4444; font-size: 0.85rem;">Please fill out all fields correctly.</span>
             
-            <button type="submit" class="uw-hero-submit" style="width: 100%; padding: 0.75rem; background: #111827; color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+            <button type="submit" class="uw-hero-submit">
               Get My Offer
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </button>
@@ -561,7 +610,7 @@
       <div class="uw-h3-stats-wrapper">
         <div class="uw-h3-stats">
           
-          <div class="uw-h3-stat uw-h3-anim-stat">
+          <div class="uw-h3-stat">
             <div class="uw-h3-stat-icon">
               <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </div>
@@ -571,7 +620,7 @@
             </div>
           </div>
 
-          <div class="uw-h3-stat uw-h3-anim-stat">
+          <div class="uw-h3-stat">
             <div class="uw-h3-stat-icon">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
             </div>
@@ -581,7 +630,7 @@
             </div>
           </div>
 
-          <div class="uw-h3-stat uw-h3-anim-stat">
+          <div class="uw-h3-stat">
             <div class="uw-h3-stat-icon">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8v8m0-8V6m0 12v2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
@@ -591,7 +640,7 @@
             </div>
           </div>
 
-          <div class="uw-h3-stat uw-h3-anim-stat">
+          <div class="uw-h3-stat">
             <div class="uw-h3-stat-icon">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             </div>
@@ -605,7 +654,7 @@
       </div>
 
       <!-- Mobile specific footer -->
-      <div class="uw-h3-mobile-footer uw-h3-anim-stat">
+      <div class="uw-h3-mobile-footer">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
         Trusted. Local. Community Focused.
       </div>
@@ -786,7 +835,7 @@
     <!-- Right Column (Image - Hidden on Mobile) -->
     <div class="uw-sol-image-col">
       <!-- Empty SRC, explicit dimensions handled via CSS object-fit/aspect-ratio -->
-      <img loading="lazy" src="./assets/optimized/solution-section.webp" alt="Beautiful Home Interior" class="uw-sol-image uw-anim-image">
+      <img loading="lazy" decoding="async" width="600" height="450" src="./assets/optimized/solution-section.webp" alt="Beautiful Home Interior" class="uw-sol-image uw-anim-image">
     </div>
 
   </div>
@@ -814,7 +863,7 @@
           
           <!-- Card 1 -->
           <div class="uw-cases-card uw-anim-card">
-            <img loading="lazy" src="./assets/optimized/portfolio -1.webp" alt="Inherited Home" class="uw-cases-card-img">
+            <img loading="lazy" decoding="async" width="400" height="300" src="./assets/optimized/portfolio-1.webp" alt="Inherited Home" class="uw-cases-card-img">
             <div class="uw-cases-card-content">
               <div class="uw-cases-card-loc">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -834,7 +883,7 @@
 
           <!-- Card 2 -->
           <div class="uw-cases-card uw-anim-card">
-            <img loading="lazy" src="./assets/optimized/portfolio -2.webp" alt="Foreclosure Case" class="uw-cases-card-img">
+            <img loading="lazy" decoding="async" width="400" height="300" src="./assets/optimized/portfolio-2.webp" alt="Foreclosure Case" class="uw-cases-card-img">
             <div class="uw-cases-card-content">
               <div class="uw-cases-card-loc">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -854,7 +903,7 @@
 
           <!-- Card 3 -->
           <div class="uw-cases-card uw-anim-card">
-            <img loading="lazy" src="./assets/optimized/portfolio -3.webp" alt="Tired Landlord" class="uw-cases-card-img">
+            <img loading="lazy" decoding="async" width="400" height="300" src="./assets/optimized/portfolio-3.webp" alt="Tired Landlord" class="uw-cases-card-img">
             <div class="uw-cases-card-content">
               <div class="uw-cases-card-loc">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -874,7 +923,7 @@
 
           <!-- Card 4 -->
           <div class="uw-cases-card uw-anim-card">
-            <img loading="lazy" src="./assets/optimized/portfolio-4.webp" alt="Heavy Repairs" class="uw-cases-card-img">
+            <img loading="lazy" decoding="async" width="400" height="300" src="./assets/optimized/portfolio-4.webp" alt="Heavy Repairs" class="uw-cases-card-img">
             <div class="uw-cases-card-content">
               <div class="uw-cases-card-loc">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -1011,214 +1060,400 @@
 </section>
 
 <!-- --- reviews_section.html --- -->
-<section class="uw-rev-section">
-  <div class="uw-rev-container">
+<section class="uw-rev-section" style="padding: 5rem 0; background-color: #ffffff;">
+  <div class="uw-rev-container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
     
     <!-- Header -->
-    <div class="uw-rev-header">
-      <div class="uw-rev-badge uw-anim-header">Reviews</div>
-      <h2 class="uw-rev-title uw-anim-header">Trusted by<br>Bakersfield Homeowners</h2>
-      <p class="uw-rev-desc uw-anim-header">We take pride in delivering quality, integrity, and lasting results. Here’s what our customers have to say about their experience.</p>
+    <div class="uw-rev-header" style="text-align: center; margin-bottom: 3rem;">
+      <div class="uw-rev-badge uw-anim-header" style="display:inline-block; padding:0.5rem 1rem; border-radius:999px; background:#f3f4f6; color:#374151; font-weight:600; text-transform:uppercase; font-size:0.875rem; letter-spacing:0.05em; margin-bottom:1rem;">Reviews</div>
+      <h2 class="uw-rev-title uw-anim-header" style="font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #111827;">Trusted by<br>Bakersfield Homeowners</h2>
     </div>
 
-    <!-- DESKTOP & TABLET WRAPPER -->
-    <div class="uw-rev-desktop-wrapper">
+    <!-- 3x3 Grid -->
+    <div class="uw-rev-grid-v2" style="margin-bottom: 4rem;">
       
-      <!-- Left Featured Card -->
-      <div class="uw-rev-card uw-rev-featured uw-anim-card" id="uwFeaturedCard">
-        <div class="uw-rev-watermark">G</div>
-        <div class="uw-rev-card-header uw-rev-card-inner-text">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>
-            <div class="uw-rev-stars">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </div>
-          </div>
-          <span class="uw-rev-date">5 days ago</span>
-        </div>
-        <div class="uw-rev-quote-icon uw-rev-card-inner-text"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div>
-        <div class="uw-rev-text uw-rev-card-inner-text">Bakersfield Home Solutions transformed our home. The team was professional, on time, and the quality is outstanding. Highly recommend!</div>
-        <div class="uw-rev-author uw-rev-card-inner-text">
-          <div class="uw-rev-avatar">JM</div>
-          <div class="uw-rev-author-details">
-            <span class="uw-rev-author-name">Jason M.</span>
-            <span class="uw-rev-author-loc">Bakersfield, CA</span>
-            <div class="uw-rev-verified">
-              Verified Review
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Grid Cards -->
-      <div class="uw-rev-grid" id="uwDesktopGrid">
-        <div class="uw-rev-card uw-rev-desktop-slot uw-anim-card">
-          <div class="uw-rev-watermark">G</div>
-          <div class="uw-rev-card-header uw-rev-card-inner-text">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>
-              <div class="uw-rev-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-            </div>
-            <span class="uw-rev-date">1 week ago</span>
-          </div>
-          
-          <div class="uw-rev-text uw-rev-card-inner-text">Honest, reliable, and detail-oriented. They made the whole process easy from start to finish.</div>
-          <div class="uw-rev-author uw-rev-card-inner-text">
-            <div class="uw-rev-avatar">SL</div>
-            <div class="uw-rev-author-details">
-              <span class="uw-rev-author-name">Sarah L.</span>
-              <span class="uw-rev-author-loc">Bakersfield, CA</span>
-              <div class="uw-rev-verified">
-                Verified Review
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="uw-rev-card uw-rev-desktop-slot uw-anim-card">
-          <div class="uw-rev-watermark">G</div>
-          <div class="uw-rev-card-header uw-rev-card-inner-text">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>
-              <div class="uw-rev-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-            </div>
-            <span class="uw-rev-date">2 weeks ago</span>
-          </div>
-          
-          <div class="uw-rev-text uw-rev-card-inner-text">Great communication, fair pricing, and the results were better than we expected.</div>
-          <div class="uw-rev-author uw-rev-card-inner-text">
-            <div class="uw-rev-avatar">MT</div>
-            <div class="uw-rev-author-details">
-              <span class="uw-rev-author-name">Michael T.</span>
-              <span class="uw-rev-author-loc">Bakersfield, CA</span>
-              <div class="uw-rev-verified">
-                Verified Review
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="uw-rev-card uw-rev-desktop-slot uw-anim-card">
-          <div class="uw-rev-watermark">G</div>
-          <div class="uw-rev-card-header uw-rev-card-inner-text">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>
-              <div class="uw-rev-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-            </div>
-            <span class="uw-rev-date">3 weeks ago</span>
-          </div>
-          
-          <div class="uw-rev-text uw-rev-card-inner-text">They handled everything with care and professionalism. Our home looks amazing!</div>
-          <div class="uw-rev-author uw-rev-card-inner-text">
-            <div class="uw-rev-avatar">AR</div>
-            <div class="uw-rev-author-details">
-              <span class="uw-rev-author-name">Amanda R.</span>
-              <span class="uw-rev-author-loc">Bakersfield, CA</span>
-              <div class="uw-rev-verified">
-                Verified Review
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="uw-rev-card uw-rev-desktop-slot uw-anim-card">
-          <div class="uw-rev-watermark">G</div>
-          <div class="uw-rev-card-header uw-rev-card-inner-text">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>
-              <div class="uw-rev-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-            </div>
-            <span class="uw-rev-date">1 month ago</span>
-          </div>
-          
-          <div class="uw-rev-text uw-rev-card-inner-text">I've used other contractors before, but BHS is by far the best in Bakersfield.</div>
-          <div class="uw-rev-author uw-rev-card-inner-text">
-            <div class="uw-rev-avatar">DP</div>
-            <div class="uw-rev-author-details">
-              <span class="uw-rev-author-name">David P.</span>
-              <span class="uw-rev-author-loc">Bakersfield, CA</span>
-              <div class="uw-rev-verified">
-                Verified Review
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- MOBILE SCROLLER WRAPPER -->
-    <div class="uw-rev-mobile-wrapper uw-anim-card" style="margin-bottom: 1.5rem;">
-      <div class="uw-rev-mobile-track" id="uwMobileTrack">
-        <!-- Will be populated by JS or populated partially -->
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">3 weeks ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">They handled everything with care and professionalism. Our home looks amazing!</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">AR</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Amanda R.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </div>
     </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
 
-    <div style="display: flex; justify-content: center; margin-top: 1rem; margin-bottom: 2rem;">
-      <button id="uwLoadMoreBtn" class="uw-rev-btn" style="cursor: pointer; border: none;">Load More Reviews</button>
-    </div>
 
-    <!-- Bottom Banner -->
-    <div class="uw-rev-banner uw-anim-banner">
-      
-      <div class="uw-rev-banner-stat">
-        <div class="uw-rev-stat-icon">G</div>
-        <div class="uw-rev-stat-content">
-          <span class="uw-rev-stat-label">Google Rating</span>
-          <div class="uw-rev-stat-value">
-            4.9 
-            <div class="uw-rev-stars">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </div>
-          </div>
-          <span class="uw-rev-stat-desc">Based on real customer reviews</span>
-        </div>
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">5 days ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">Bakersfield Home Solutions transformed our home. The team was professional, on time, and the quality is outstanding. Highly recommend!</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">JM</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Jason M.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
 
-      <div class="uw-rev-divider"></div>
 
-      <div class="uw-rev-banner-stat">
-        <div class="uw-rev-stat-icon outline">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-        </div>
-        <div class="uw-rev-stat-content">
-          <span class="uw-rev-stat-label">Total Reviews</span>
-          <div class="uw-rev-stat-value">248+</div>
-          <span class="uw-rev-stat-desc">From homeowners in Bakersfield</span>
-        </div>
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">1 week ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">Honest, reliable, and detail-oriented. They made the whole process easy from start to finish.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">SL</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Sarah L.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
 
-      <div class="uw-rev-divider" style="display: none;"></div> <!-- Spacer -->
 
-      <!-- Call to Action Button -->
-      <a href="tel:6614909992" class="uw-rev-btn">
-        View Our Google<br>Business Profile
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-      </a>
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">2 weeks ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">Great communication, fair pricing, and the results were better than we expected.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">MT</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Michael T.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
+
+
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">1 month ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">I've used other contractors before, but BHS is by far the best in Bakersfield.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">DP</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">David P.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
+
+
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">1 month ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">They gave me a fair cash offer within 24 hours. No stress, no repairs needed. Thank you!</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">JW</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Jessica W.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
+
+
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">2 months ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">Selling my inherited property was daunting until I called BHS. They handled all the paperwork seamlessly.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">RB</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Robert B.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
+
+
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">2 months ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">Closed on my timeline just like they promised. Extremely transparent and helpful team.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">EK</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Emily K.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
+
+
+<div class="uw-rev-card-v2 uw-anim-card">
+  <!-- Top Row -->
+  <div class="uw-rev-v2-top">
+    <span style="font-weight:700; font-size:1.25rem; letter-spacing:-0.5px;">
+  <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+</span>
+    <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+    <span class="uw-rev-v2-time">3 months ago</span>
+  </div>
+  
+  <!-- Text -->
+  <div class="uw-rev-v2-text">The cash offer was fair, and the team was incredibly respectful of our situation.</div>
+  
+  <!-- Bottom Row -->
+  <div class="uw-rev-v2-bottom">
+    <div class="uw-rev-v2-avatar">MD</div>
+    <div class="uw-rev-v2-author">
+      <div class="uw-rev-v2-name">Mark D.</div>
+      <div class="uw-rev-v2-loc">Bakersfield, CA</div>
+      <div class="uw-rev-v2-verified">
+        Verified Review
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Watermark -->
+  <div class="uw-rev-v2-watermark">G</div>
+</div>
 
     </div>
+    
+    <!-- Stats Banner -->
+    
+<div class="uw-rev-stats-banner uw-anim-card">
+  <!-- Col 1 -->
+  <div class="uw-rev-stat-col">
+    <div class="uw-rev-stat-icon-solid">G</div>
+    <div class="uw-rev-stat-info">
+      <div class="uw-rev-stat-label">Google Rating</div>
+      <div class="uw-rev-stat-val-row">
+        <span class="uw-rev-stat-val">4.9</span>
+        <div style="color: #556b2f; display: flex; gap: 4px;">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+      </div>
+      <div class="uw-rev-stat-desc">Based on real customer reviews</div>
+    </div>
+  </div>
+  
+  <div class="uw-rev-stat-divider"></div>
+  
+  <!-- Col 2 -->
+  <div class="uw-rev-stat-col">
+    <div class="uw-rev-stat-icon-hollow">
+      <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+    </div>
+    <div class="uw-rev-stat-info">
+      <div class="uw-rev-stat-label">Total Reviews</div>
+      <div class="uw-rev-stat-val">248+</div>
+      <div class="uw-rev-stat-desc">From homeowners in Bakersfield</div>
+    </div>
+  </div>
+  
+  <div class="uw-rev-stat-spacer"></div>
+  
+  <!-- Col 3 -->
+  <div class="uw-rev-stat-col">
+    <a href="https://g.page/r/" target="_blank" rel="noopener noreferrer" class="uw-rev-stat-btn">
+      View Our Google<br>Business Profile
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    </a>
+  </div>
+</div>
+
+    
   </div>
 </section>
 
@@ -1428,7 +1663,7 @@
       <div class="uw-team-left">
         <div class="uw-team-card large uw-anim-target">
           <!-- Empty SRC, cover applied via CSS -->
-          <img src="./assets/optimized/team-1.webp" alt="Javier Martinez" class="uw-team-img">
+          <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-1.webp" alt="Javier Martinez" class="uw-team-img">
           
           <div class="uw-team-details">
             <h4>Javier Martinez</h4>
@@ -1451,7 +1686,7 @@
         <div class="uw-team-small-cards">
           
           <div class="uw-team-card small uw-anim-target">
-            <img src="./assets/optimized/team-2.webp" alt="Amanda Ruiz" class="uw-team-img">
+            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-2.webp" alt="Amanda Ruiz" class="uw-team-img">
             <div class="uw-team-details">
               <h4>Amanda Ruiz</h4>
               <p>Seller Support</p>
@@ -1459,7 +1694,7 @@
           </div>
 
           <div class="uw-team-card small uw-anim-target">
-            <img src="./assets/optimized/team-3.webp" alt="Daniel Thompson" class="uw-team-img">
+            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-3.webp" alt="Daniel Thompson" class="uw-team-img">
             <div class="uw-team-details">
               <h4>Daniel Thompson</h4>
               <p>Property Acquisitions</p>
@@ -1467,7 +1702,7 @@
           </div>
 
           <div class="uw-team-card small uw-anim-target">
-            <img src="./assets/optimized/team-4.webp" alt="Tiffany Lee" class="uw-team-img">
+            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-4.webp" alt="Tiffany Lee" class="uw-team-img">
             <div class="uw-team-details">
               <h4>Tiffany Lee</h4>
               <p>Closing Coordinator</p>
@@ -1520,7 +1755,7 @@
       <p class="uw-faq-desc">Get quick answers to the most common questions about our process.</p>
       
       <div class="uw-faq-image-wrapper">
-        <img src="./assets/optimized/faq.webp" alt="Modern home exterior" class="uw-faq-image">
+        <img loading="lazy" decoding="async" width="600" height="375" src="./assets/optimized/faq.webp" alt="Modern home exterior" class="uw-faq-image">
       </div>
     </div>
 
@@ -1614,7 +1849,7 @@
       
       <!-- Image instance is empty with clear width/height via CSS -->
       <div class="uw-hero-image-wrapper">
-        <img loading="lazy" src="./assets/optimized/hero-desktop.webp" alt="Hero Property" class="uw-hero-image">
+        <img loading="lazy" decoding="async" width="600" height="400" src="./assets/optimized/form-house-600.webp" srcset="./assets/optimized/form-house-600.webp 600w, ./assets/optimized/form-house-800.webp 800w" sizes="(max-width: 768px) 100vw, 600px" alt="Bakersfield property" class="uw-hero-image">
       </div>
     </div>
 
@@ -1753,6 +1988,6 @@
 
 
   </main>
-  <script type="module" src="./main.js" defer></script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

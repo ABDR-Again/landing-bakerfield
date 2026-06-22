@@ -164,111 +164,8 @@ const tl = gsap.timeline({
 }
 /* --- reviews_section.html --- */
 {
-
-// 1. Data Array
-    const reviewsData = [
-      {
-        name: "Jason M.", loc: "Bakersfield, CA", time: "5 days ago", initials: "JM",
-        text: "Bakersfield Home Solutions transformed our home. The team was professional, on time, and the quality is outstanding. Highly recommend!"
-      },
-      {
-        name: "Sarah L.", loc: "Bakersfield, CA", time: "1 week ago", initials: "SL",
-        text: "Honest, reliable, and detail-oriented. They made the whole process easy from start to finish."
-      },
-      {
-        name: "Michael T.", loc: "Bakersfield, CA", time: "2 weeks ago", initials: "MT",
-        text: "Great communication, fair pricing, and the results were better than we expected."
-      },
-      {
-        name: "Amanda R.", loc: "Bakersfield, CA", time: "3 weeks ago", initials: "AR",
-        text: "They handled everything with care and professionalism. Our home looks amazing!"
-      },
-      {
-        name: "David P.", loc: "Bakersfield, CA", time: "1 month ago", initials: "DP",
-        text: "I've used other contractors before, but BHS is by far the best in Bakersfield."
-      },
-      {
-        name: "Jessica W.", loc: "Bakersfield, CA", time: "1 month ago", initials: "JW",
-        text: "They gave me a fair cash offer within 24 hours. No stress, no repairs needed. Thank you!"
-      },
-      {
-        name: "Robert B.", loc: "Bakersfield, CA", time: "2 months ago", initials: "RB",
-        text: "Selling my inherited property was daunting until I called BHS. They handled all the paperwork seamlessly."
-      },
-      {
-        name: "Emily K.", loc: "Bakersfield, CA", time: "2 months ago", initials: "EK",
-        text: "Closed on my timeline just like they promised. Extremely transparent and helpful team."
-      }
-    ];
-
-    // SVG Constants
-    const starsSVG = `
-      <div class="uw-rev-stars">
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-      </div>`;
-    
-    const googleText = `<span class="uw-rev-google-logo"><span class="uw-g-blue">G</span><span class="uw-g-red">o</span><span class="uw-g-yellow">o</span><span class="uw-g-blue">g</span><span class="uw-g-green">l</span><span class="uw-g-red">e</span></span>`;
-
-    // 2. Card Generator Function
-    const generateCardHTML = (data, isFeatured = false) => {
-      const quoteHTML = isFeatured ? `<div class="uw-rev-quote-icon uw-rev-card-inner-text"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div>` : '';
-      
-      return `
-        <div class="uw-rev-watermark">G</div>
-        <div class="uw-rev-card-header uw-rev-card-inner-text">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            ${googleText}
-            ${starsSVG}
-          </div>
-          <span class="uw-rev-date">${data.time}</span>
-        </div>
-        ${quoteHTML}
-        <div class="uw-rev-text uw-rev-card-inner-text">${data.text}</div>
-        <div class="uw-rev-author uw-rev-card-inner-text">
-          <div class="uw-rev-avatar">${data.initials}</div>
-          <div class="uw-rev-author-details">
-            <span class="uw-rev-author-name">${data.name}</span>
-            <span class="uw-rev-author-loc">${data.loc}</span>
-            <div class="uw-rev-verified">
-              Verified Review
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-          </div>
-        </div>
-      `;
-    };
-
-    // 3. Initial State is now in HTML
-    const desktopGrid = document.getElementById("uwDesktopGrid");
-    const mobileTrack = document.getElementById("uwMobileTrack");
-    const loadMoreBtn = document.getElementById("uwLoadMoreBtn");
-
-    let currentReviewIndex = 5; // 0 to 4 are hardcoded in HTML
-
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', () => {
-        for (let i = currentReviewIndex; i < reviewsData.length; i++) {
-          const rev = reviewsData[i];
-          const newCard = document.createElement("div");
-          newCard.className = "uw-rev-card uw-anim-card";
-          newCard.innerHTML = generateCardHTML(rev);
-          
-          if (window.innerWidth > 767) {
-            desktopGrid.appendChild(newCard);
-          } else {
-            mobileTrack.appendChild(newCard);
-          }
-
-          gsap.fromTo(newCard, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
-        }
-        loadMoreBtn.style.display = "none";
-      });
-    }
-
+    // Animations kept for headers/cards.
+  
     // 6. Initial GSAP Reveal Animations
     
 
@@ -671,8 +568,8 @@ const tl = gsap.timeline({
             btn.innerHTML = originalText;
             btn.style.backgroundColor = '';
             form.reset();
-          }, 3000);
-        }, 1500);
+          }, 2000);
+        }, 500);
       } else {
         // Shake animation for form on error
         gsap.fromTo(form, 
@@ -732,8 +629,8 @@ const tl = gsap.timeline({
               btn.innerHTML = originalText;
               btn.style.backgroundColor = '';
               heroTopForm.reset();
-            }, 3000);
-          }, 1500);
+            }, 2000);
+          }, 500);
         } else {
           if(topErrorMsg) topErrorMsg.style.display = 'block';
           gsap.fromTo(heroTopForm, 
