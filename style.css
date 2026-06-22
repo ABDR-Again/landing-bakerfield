@@ -2201,13 +2201,22 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    /* GSAP will control the transform/opacity, CSS handles pointer events */
+    /* CSS hover handles the transform/opacity */
     pointer-events: none; 
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
     z-index: 10;
   }
 
   .uw-team-details h4 {
     font-size: 1.25rem;
+
+  .uw-team-card:hover .uw-team-details {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
     font-weight: 700;
     margin: 0;
   }
@@ -3059,16 +3068,7 @@ body {
   }
 
 
-/* Prevent FOUC for GSAP animated elements */
-.uw-problem-badge, .uw-problem-title, .uw-problem-desc, .uw-problem-image-wrapper, .uw-problem-card, .uw-problem-banner,
-.uw-anim-intro, .uw-sol-step, .uw-sol-step-content h3, .uw-sol-step-content p, .uw-anim-image,
-.uw-anim-header, .uw-anim-card, .uw-cases-side-box, .uw-anim-mobile,
-.uw-rev-card-inner-text, .uw-anim-banner,
-.uw-comp2-badge, .uw-comp2-title, .uw-comp2-desc, .uw-comp2-card, .uw-comp2-table-wrapper, .uw-comp2-row, .uw-comp2-cta,
-.uw-team-card, .uw-faq-badge, .uw-faq-title, .uw-faq-desc, .uw-faq-image-wrapper, .uw-faq-item,
-.uw-hero-badge, .uw-hero-title, .uw-hero-desc, .uw-hero-image-wrapper, .uw-hero-form-wrapper, .uw-hero-right {
-  opacity: 0;
-}
+/* Prevent FOUC for GSAP animated elements (REMOVED) */
 
 /* --- SQUARE REVIEWS GRID --- */
 .uw-rev-square-grid {
