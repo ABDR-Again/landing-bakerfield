@@ -512,8 +512,14 @@
 
   </style>
 
-  <link rel="preload" as="image" href="./assets/optimized/hero-desktop.webp" media="(min-width: 1024px)" fetchpriority="high">
-  <link rel="preload" as="image" href="./assets/optimized/hero-mobile.webp" media="(max-width: 1023px)" fetchpriority="high">
+  <!-- Font Preloads -->
+  <link rel="preload" href="./assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Hero Image Preload -->
+  <link rel="preload" as="image" imagesrcset="./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop.webp 1920w" imagesizes="(max-width: 1023px) 150px, 100vw" fetchpriority="high">
 
   <!-- Rest of CSS lazy loaded -->
   <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -524,12 +530,9 @@
 
   <!-- Hero Section -->
   <section class="uw-h3-section">
-    <picture class="uw-h3-picture">
-      <!-- Desktop Image -->
-      <source media="(min-width: 1024px)" srcset="./assets/optimized/hero-desktop.webp">
-      <!-- Mobile Image -->
-      <img fetchpriority="high" width="533" height="300" src="./assets/optimized/hero-mobile.webp" alt="Modern Home Architecture in Bakersfield">
-    </picture>
+    <div class="uw-h3-picture">
+      <img fetchpriority="high" src="./assets/optimized/hero-desktop.webp" srcset="./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop.webp 1920w" sizes="(max-width: 1023px) 150px, 100vw" alt="Modern Home Architecture in Bakersfield" width="1920" height="1080">
+    </div>
     
     <div class="uw-h3-overlay"></div>
 

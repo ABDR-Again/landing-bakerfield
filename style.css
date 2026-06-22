@@ -2947,18 +2947,46 @@ body {
 
   /* --- RESPONSIVE DESIGN --- */
 
-  /* Tablet */
-  @media (max-width: 1200px) {
+  /* Small Desktop / Tablet Landscape */
+  @media (max-width: 1280px) {
     .uw-hero-container {
-      grid-template-columns: 1fr 400px;
-      gap: 2rem;
+      grid-template-columns: 1fr 450px;
+      gap: 2.5rem;
+      padding: 2.5rem;
     }
     
     .uw-hero-right {
-      display: none; /* Hide right features on smaller screens if space is tight */
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      border-left: none;
+      border-top: 1px solid var(--uw-hero-border);
+      padding-left: 0;
+      padding-top: 2.5rem;
+      gap: 2rem;
+    }
+
+    .uw-hero-contact {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .uw-hero-contact-icon {
+      margin-bottom: 0;
+    }
+
+    .uw-hero-features {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
     }
   }
 
+  /* Tablet Portrait */
   @media (max-width: 991px) {
     .uw-hero-container {
       grid-template-columns: 1fr;
@@ -2967,6 +2995,17 @@ body {
 
     .uw-hero-image-wrapper {
       height: 250px;
+    }
+
+    .uw-hero-right {
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .uw-hero-features {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
