@@ -519,7 +519,7 @@
   <link rel="preload" href="./assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Hero Image Preload -->
-  <link rel="preload" as="image" imagesrcset="./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop.webp 1920w" imagesizes="(max-width: 1023px) 150px, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" imagesrcset="./assets/optimized/hero-mobile-small.webp 400w, ./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop-1024w.webp 1024w, ./assets/optimized/hero-desktop.webp 1920w" imagesizes="100vw" fetchpriority="high">
 
   <!-- Rest of CSS lazy loaded -->
   <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -531,7 +531,7 @@
   <!-- Hero Section -->
   <section class="uw-h3-section">
     <div class="uw-h3-picture">
-      <img fetchpriority="high" src="./assets/optimized/hero-desktop.webp" srcset="./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop.webp 1920w" sizes="(max-width: 1023px) 150px, 100vw" alt="Modern Home Architecture in Bakersfield" width="1920" height="1080">
+      <img fetchpriority="high" src="./assets/optimized/hero-desktop.webp" srcset="./assets/optimized/hero-mobile-small.webp 400w, ./assets/optimized/hero-mobile.webp 533w, ./assets/optimized/hero-desktop-1024w.webp 1024w, ./assets/optimized/hero-desktop.webp 1920w" sizes="100vw" alt="Modern Home Architecture in Bakersfield" width="1920" height="1080">
     </div>
     
     <div class="uw-h3-overlay"></div>
@@ -682,7 +682,7 @@
       <p class="uw-problem-desc">Selling the traditional way can feel overwhelming when time, money, or life changes create pressure. You're not alone—and you have options.</p>
       
       <div class="uw-problem-image-wrapper">
-        <img loading="lazy" width="364" height="364" src="./assets/optimized/problems.webp" alt="Modern house" class="uw-problem-image">
+        <img loading="lazy" width="364" height="364" src="./assets/optimized/problems.webp" srcset="./assets/optimized/problems-400w.webp 400w, ./assets/optimized/problems-800w.webp 800w, ./assets/optimized/problems.webp 1254w" sizes="(max-width: 768px) 100vw, 364px" alt="Modern house" class="uw-problem-image">
       </div>
     </div>
 
