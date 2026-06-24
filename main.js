@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Use FormData to grab all fields, including hidden tracking fields
           const formData = Object.fromEntries(new FormData(form).entries());
 
-          fetch("REPLACE_WITH_CLOUDFLARE_WORKER_URL", {
+          fetch("https://bakersfield-followupboss-worker.YOUR-SUBDOMAIN.workers.dev", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
