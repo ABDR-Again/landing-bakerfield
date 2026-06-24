@@ -1,6 +1,40 @@
 import gsap from 'gsap';
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  function fillTrackingFields() {
+    const params = new URLSearchParams(window.location.search);
+
+    const setField = (name, value) => {
+      // Find all fields with this name (for both forms)
+      const fields = document.querySelectorAll(`[name="${name}"]`);
+      fields.forEach(field => {
+        field.value = value || "";
+      });
+    };
+
+    setField("page_url", window.location.href);
+    setField("page_title", document.title);
+    setField("page_referrer", document.referrer);
+
+    [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "gclid",
+      "gbraid",
+      "wbraid",
+      "fbclid"
+    ].forEach((key) => {
+      setField(key, params.get(key));
+    });
+  }
+
+  fillTrackingFields();
+
+
   /* =========================================
      1. Hero Section Animations Removed for Performance
      ========================================= */
@@ -94,44 +128,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  
   /* --- hero_form_section.html --- */
   {
-    // Form Validation & Logic
-    const form = document.getElementById("uwHeroForm");
-    const phoneInput = document.getElementById("uwPhone");
-    const emailInput = document.getElementById("uwEmail");
+    // US Phone Formatter Helper
+    const formatUSPhone = (value) => {
+      if (!value) return value;
+      const phoneNumber = value.replace(/[^\d]/g, '');
+      const phoneNumberLength = phoneNumber.length;
+      if (phoneNumberLength < 4) return phoneNumber;
+      if (phoneNumberLength < 7) {
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+      }
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+    };
 
-    if (form && phoneInput && emailInput) {
-      // Phone - Allow numbers only
-      phoneInput.addEventListener('input', function(e) {
-        // Strip out non-digit characters
-        this.value = this.value.replace(/\D/g, '');
+    // Attach to all phone inputs
+    const phoneInputs = document.querySelectorAll('.uw-phone-input, #uwPhone');
+    phoneInputs.forEach(input => {
+      input.addEventListener('input', function(e) {
+        this.value = formatUSPhone(this.value);
       });
+    });
 
-      // Helper: Reset Errors
-      const resetErrors = () => {
-        document.querySelectorAll('.uw-hero-input, .uw-hero-select').forEach(el => {
-          el.classList.remove('is-invalid');
-        });
-        document.querySelectorAll('.uw-hero-error-message').forEach(el => {
-          el.style.display = 'none';
-        });
-      };
+    // Helper: Reset Errors
+    const resetErrors = (formElement) => {
+      formElement.querySelectorAll('.uw-hero-input, .uw-hero-select').forEach(el => {
+        el.classList.remove('is-invalid');
+      });
+      formElement.querySelectorAll('.uw-field-error-message, .uw-general-error-message').forEach(el => {
+        el.style.display = 'none';
+      });
+    };
 
-      // Helper: Show Error
-      const showError = (inputElement) => {
-        inputElement.classList.add('is-invalid');
-        const errorMsg = inputElement.closest('.uw-hero-input-group').querySelector('.uw-hero-error-message');
-        if(errorMsg) errorMsg.style.display = 'block';
-      };
+    // Helper: Show Error
+    const showError = (inputElement) => {
+      inputElement.classList.add('is-invalid');
+      // Look for the next sibling or an element in the closest wrapper
+      let errorMsg = inputElement.parentElement.querySelector('.uw-field-error-message');
+      if (!errorMsg && inputElement.closest('div')) {
+        errorMsg = inputElement.closest('div').querySelector('.uw-field-error-message');
+      }
+      if(errorMsg) errorMsg.style.display = 'block';
+    };
 
-      // Submit Event
+    // Bind validation for a given form
+    const bindValidation = (form) => {
+      if (!form) return;
+      const phoneInput = form.querySelector('input[type="tel"]');
+      const emailInput = form.querySelector('input[type="email"]');
+      
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        resetErrors();
+        resetErrors(form);
         let isValid = true;
 
-        // Validate required text fields
+        // Validate required fields
         const requiredInputs = form.querySelectorAll('input[required], select[required]');
         requiredInputs.forEach(input => {
           if (!input.value.trim()) {
@@ -142,103 +194,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Validate Email explicitly
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailInput.value && !emailRegex.test(emailInput.value)) {
+        if (emailInput && emailInput.value && !emailRegex.test(emailInput.value)) {
           showError(emailInput);
           isValid = false;
         }
 
-        // Validate Phone explicitly (must have at least 10 digits)
-        if (phoneInput.value && phoneInput.value.length < 10) {
+        // Validate Phone explicitly (US format requires 14 chars exactly: (XXX) XXX-XXXX)
+        if (phoneInput && phoneInput.value && phoneInput.value.length !== 14) {
           showError(phoneInput);
           isValid = false;
         }
 
-        // If valid, submit logic here
-        if (isValid) {
-          // Success state / Animation
-          const btn = form.querySelector('.uw-hero-submit');
-          const originalText = btn.innerHTML;
-          btn.innerHTML = 'Sending...';
-          btn.style.backgroundColor = '#16a34a'; // Green success color
-          
-          setTimeout(() => {
-            btn.innerHTML = 'Sent Successfully!';
+                if (isValid) {
+          const btn = form.querySelector('button[type="submit"]');
+          const originalText = btn ? btn.innerHTML : "";
+          if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = 'Submitting...';
+            btn.style.backgroundColor = '#16a34a'; 
+          }
+
+          // Use FormData to grab all fields, including hidden tracking fields
+          const formData = Object.fromEntries(new FormData(form).entries());
+
+          fetch("REPLACE_WITH_CLOUDFLARE_WORKER_URL", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(res => res.json().then(data => ({ status: res.status, ok: res.ok, body: data })))
+          .then(result => {
+            if (!result.ok || !result.body.success) {
+              throw new Error(result.body.error || "Submission failed");
+            }
+            if (btn) {
+              btn.innerHTML = 'Sent Successfully!';
+            }
             setTimeout(() => {
+              window.location.href = 'lead-submitted-thank-you.html';
+            }, 500);
+          })
+          .catch(error => {
+            console.error("Form submission error:", error);
+            alert("Something went wrong. Please try again.");
+            if (btn) {
+              btn.disabled = false;
               btn.innerHTML = originalText;
               btn.style.backgroundColor = '';
-              form.reset();
-            }, 2000);
-          }, 500);
+            }
+          });
         } else {
-          // Shake animation for form on error
+          // Show general error
+          const generalError = form.querySelector('.uw-general-error-message');
+          if (generalError) generalError.style.display = 'block';
+          
           gsap.fromTo(form, 
             { x: -5 }, 
             { x: 5, duration: 0.1, yoyo: true, repeat: 3, ease: "power1.inOut" }
           );
         }
       });
-    }
+    };
 
-    // Hero Top Form Validation & Logic
-    const heroTopForm = document.getElementById("uwHeroTopForm");
-    if(heroTopForm) {
-      const topPhoneInput = heroTopForm.querySelector(".uw-phone-input");
-      const topEmailInput = heroTopForm.querySelector(".uw-email-input");
-      const topErrorMsg = heroTopForm.querySelector(".uw-hero-error-message");
-
-      const resetTopErrors = () => {
-        heroTopForm.querySelectorAll('.uw-hero-input, .uw-hero-select').forEach(el => {
-          el.classList.remove('is-invalid');
-        });
-        if(topErrorMsg) topErrorMsg.style.display = 'none';
-      };
-
-      heroTopForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        resetTopErrors();
-        let isValid = true;
-
-        const requiredInputs = heroTopForm.querySelectorAll('input[required], select[required]');
-        requiredInputs.forEach(input => {
-          if (!input.value.trim()) {
-            input.classList.add('is-invalid');
-            isValid = false;
-          }
-        });
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (topEmailInput && topEmailInput.value && !emailRegex.test(topEmailInput.value)) {
-          topEmailInput.classList.add('is-invalid');
-          isValid = false;
-        }
-
-        if (topPhoneInput && topPhoneInput.value && topPhoneInput.value.length < 10) {
-          topPhoneInput.classList.add('is-invalid');
-          isValid = false;
-        }
-
-        if (isValid) {
-          const btn = heroTopForm.querySelector('.uw-hero-submit');
-          const originalText = btn.innerHTML;
-          btn.innerHTML = 'Sending...';
-          btn.style.backgroundColor = '#16a34a'; 
-          
-          setTimeout(() => {
-            btn.innerHTML = 'Sent Successfully!';
-            setTimeout(() => {
-              btn.innerHTML = originalText;
-              btn.style.backgroundColor = '';
-              heroTopForm.reset();
-            }, 2000);
-          }, 500);
-        } else {
-          if(topErrorMsg) topErrorMsg.style.display = 'block';
-          gsap.fromTo(heroTopForm, 
-            { x: -5 }, 
-            { x: 5, duration: 0.1, yoyo: true, repeat: 3, ease: "power1.inOut" }
-          );
-        }
-      });
-    }
+    bindValidation(document.getElementById("uwHeroForm"));
+    bindValidation(document.getElementById("uwHeroTopForm"));
   }
 });

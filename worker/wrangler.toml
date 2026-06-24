@@ -1,0 +1,8 @@
+name = "bakersfield-followupboss-worker"
+main = "src/index.js"
+compatibility_date = "2026-06-24"
+
+[vars]
+FUB_SOURCE = "landings.bakersfieldhomesolutions.com"
+FUB_SYSTEM = "Bakersfield Landing Page"
+ALLOWED_ORIGIN = "https://landings.bakersfieldhomesolutions.com"
