@@ -32,3 +32,11 @@ assets/images/
 # Standard node ignores
 node_modules/
 dist/
+
+# Allow Cloudflare Worker files
+!worker/
+!worker/*
+!worker/src/*
+worker/.dev.vars
+worker/node_modules/
+worker/.wrangler/

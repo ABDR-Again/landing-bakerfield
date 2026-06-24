@@ -8,7 +8,7 @@ export default {
     ];
 
     const origin = request.headers.get("Origin") || "";
-    const isAllowedOrigin = allowedOrigins.includes(origin);
+    const isAllowedOrigin = allowedOrigins.includes(origin) || origin.startsWith("http://localhost:") || origin.startsWith("http://127.0.0.1:");
 
     const corsHeaders = {
       "Access-Control-Allow-Origin": isAllowedOrigin ? origin : "https://landings.bakersfieldhomesolutions.com",
@@ -59,6 +59,9 @@ export default {
       }
 
       const body = await request.json();
+      console.log("\n=== INCOMING FORM DATA ===");
+      console.log(JSON.stringify(body, null, 2));
+      console.log("==========================\n");
 
       const fullName = clean(body.full_name);
       const email = clean(body.email);
@@ -172,6 +175,11 @@ FBCLID: ${clean(body.fbclid)}
           corsHeaders
         );
       }
+      
+      console.log("\n=== FUB SUCCESS RESPONSE ===");
+      console.log("Status:", fubResponse.status);
+      console.log("Response:", responseText);
+      console.log("============================\n");
 
       return jsonResponse(
         {
