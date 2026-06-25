@@ -6,3 +6,7 @@ compatibility_date = "2026-06-24"
 FUB_SOURCE = "landings.bakersfieldhomesolutions.com"
 FUB_SYSTEM = "Bakersfield Landing Page"
 ALLOWED_ORIGIN = "https://landings.bakersfieldhomesolutions.com"
+
+[observability.logs]
+enabled = false
+invocation_logs = true
