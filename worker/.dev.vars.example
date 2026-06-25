@@ -2,3 +2,4 @@ FUB_API_KEY=replace_with_local_test_key_only
 FUB_SOURCE=landings.bakersfieldhomesolutions.com
 FUB_SYSTEM=Bakersfield Landing Page
 ALLOWED_ORIGIN=https://landings.bakersfieldhomesolutions.com
+TURNSTILE_SECRET_KEY=replace_with_turnstile_secret_key

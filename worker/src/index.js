@@ -63,6 +63,41 @@ export default {
       console.log(JSON.stringify(body, null, 2));
       console.log("==========================\n");
 
+      // Verify Cloudflare Turnstile token
+      const turnstileResponse = body['cf-turnstile-response'];
+      if (!turnstileResponse) {
+        return jsonResponse(
+          { success: false, error: "Please complete the anti-spam check." },
+          400, corsHeaders
+        );
+      }
+
+      if (!env.TURNSTILE_SECRET_KEY) {
+        return jsonResponse(
+          { success: false, error: "Server configuration error (Turnstile)" },
+          500, corsHeaders
+        );
+      }
+
+      const turnstileVerify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET_KEY,
+          response: turnstileResponse,
+          remoteip: request.headers.get("CF-Connecting-IP") || ""
+        })
+      });
+
+      const turnstileOutcome = await turnstileVerify.json();
+      if (!turnstileOutcome.success) {
+        console.error("Turnstile verification failed:", turnstileOutcome);
+        return jsonResponse(
+          { success: false, error: "Anti-spam check failed. Please refresh and try again." },
+          400, corsHeaders
+        );
+      }
+
       const fullName = clean(body.full_name);
       const email = clean(body.email);
       const phone = clean(body.phone);

@@ -238,11 +238,14 @@ document.addEventListener("DOMContentLoaded", () => {
           })
           .catch(error => {
             console.error("Form submission error:", error);
-            alert("Something went wrong. Please try again.");
+            alert(error.message || "Something went wrong. Please try again.");
             if (btn) {
               btn.disabled = false;
               btn.innerHTML = originalText;
               btn.style.backgroundColor = '';
+            }
+            if (typeof turnstile !== 'undefined') {
+              turnstile.reset();
             }
           });
         } else {
