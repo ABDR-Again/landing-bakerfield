@@ -6,6 +6,12 @@ export default defineConfig({
     minify: 'esbuild',
     cssMinify: 'lightningcss',
     target: 'esnext',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        thankYou: './lead-submitted-thank-you.html'
+      }
+    }
   },
   css: {
     transformer: 'lightningcss',
