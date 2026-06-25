@@ -13,6 +13,7 @@
 !package.json
 !package-lock.json
 !vite.config.js
+!lead-submitted-thank-you.html
 !.github/
 !.github/workflows/deploy.yml
 
