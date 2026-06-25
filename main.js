@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Use FormData to grab all fields, including hidden tracking fields
           const formData = Object.fromEntries(new FormData(form).entries());
 
-          fetch("https://bakersfield-followupboss-worker.YOUR-SUBDOMAIN.workers.dev", {
+          fetch("https://bakersfield-followupboss-worker.a-b-d-r1912003mltcqa-b-d-r.workers.dev", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
