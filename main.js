@@ -214,20 +214,42 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.style.backgroundColor = '#16a34a'; 
           }
 
-          // Use FormData to grab all fields, including hidden tracking fields
           const formData = Object.fromEntries(new FormData(form).entries());
 
-          fetch("https://bakersfield-followupboss-worker.a-b-d-r1912003mltcqa-b-d-r.workers.dev", {
+          const formSubmitData = {
+            ...formData,
+            _cc: "ronhemphill7@gmail.com",
+            _subject: "New Lead Submission (Bakersfield Home Solutions)",
+            _template: "table",
+            _captcha: "false"
+          };
+
+          const fubRequest = fetch("https://bakersfield-followupboss-worker.a-b-d-r1912003mltcqa-b-d-r.workers.dev", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
           })
-          .then(res => res.json().then(data => ({ status: res.status, ok: res.ok, body: data })))
-          .then(result => {
-            if (!result.ok || !result.body.success) {
-              throw new Error(result.body.error || "Submission failed");
+          .then(res => res.json().then(data => ({ status: res.status, ok: res.ok, body: data })));
+
+          const formSubmitRequest = fetch("https://formsubmit.co/ajax/ron@hempvegashomes.com", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(formSubmitData)
+          })
+          .then(res => res.json().then(data => ({ status: res.status, ok: res.ok, body: data })));
+
+          Promise.all([fubRequest, formSubmitRequest])
+          .then(([fubResult, fsResult]) => {
+            if (!fubResult.ok || !fubResult.body.success) {
+              throw new Error(fubResult.body.error || "Follow Up Boss submission failed");
+            }
+            if (!fsResult.ok || !fsResult.body.success) {
+              throw new Error(fsResult.body.error || "Email notification failed");
             }
             if (btn) {
               btn.innerHTML = 'Sent Successfully!';
