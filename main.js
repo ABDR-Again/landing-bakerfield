@@ -217,7 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const formData = Object.fromEntries(new FormData(form).entries());
 
           const formSubmitData = {
-            ...formData,
+            "Full Name": formData.full_name || "",
+            "Phone": formData.phone || "",
+            "Email": formData.email || "",
+            "Timeline": formData.timeline || "",
+            "Selling Situation": formData.selling_situation || "",
             _cc: "ronhemphill7@gmail.com",
             _subject: "New Lead Submission (Bakersfield Home Solutions)",
             _template: "table",
