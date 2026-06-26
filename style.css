@@ -36,6 +36,21 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #111111;
+  --color-text: #4A4A4A;
+  --color-muted: var(--color-muted);
+  --color-green-primary: #036A2B;
+  --color-green-dark: #013D1A;
+  --color-green-hover: #024D20;
+  --color-green-soft: #EAF7EF;
+  --color-green-light: #F6FCF8;
+  --color-border: #DCEEE2;
+  --color-input-border: #CFE5D6;
+}
+
+
 /* Optimize rendering for below-fold sections */
 .uw-problem-section,
 .uw-sol-section,
@@ -61,12 +76,12 @@ body {
 /* --- problem_section.html --- */
 /* Base & Variables */
   .uw-problem-section {
-    --uw-prob-text-main: #111827;
-    --uw-prob-text-muted: #6b7280;
-    --uw-prob-card-bg: #f9fafb;
-    --uw-prob-card-hover: #f1f5eb; 
-    --uw-prob-accent-light: #f1f5eb; 
-    --uw-prob-accent-dark: #5b7141; 
+    --uw-prob-text-main: var(--color-black);
+    --uw-prob-text-muted: var(--color-muted);
+    --uw-prob-card-bg: var(--color-white);
+    --uw-prob-card-hover: var(--color-green-soft); 
+    --uw-prob-accent-light: var(--color-green-soft); 
+    --uw-prob-accent-dark: var(--color-green-primary); 
     --uw-font-main: 'Inter', sans-serif;
 
     background-color: #ffffff; /* Removed black background */
@@ -148,7 +163,7 @@ body {
     height: 380px; 
     border-radius: 1.5rem;
     overflow: hidden;
-    background-color: #e5e7eb; 
+    background-color: var(--color-border); 
   }
 
   .uw-problem-image {
@@ -330,12 +345,12 @@ body {
 /* --- solution_section (3).html --- */
 /* Base Variables & Scoping */
   .uw-sol-section {
-    --uw-sol-bg-light: #faf9f5; /* Off-white for left column */
-    --uw-sol-bg-dark: #4a4d33; /* Dark yellowish-olive for middle column */
-    --uw-sol-accent: #d2da8a; /* Bright yellowish accent */
-    --uw-sol-accent-hover: #b8c16d;
-    --uw-sol-text-main: #1a1a1a;
-    --uw-sol-text-muted: #525252;
+    --uw-sol-bg-light: var(--color-white); /* Off-white for left column */
+    --uw-sol-bg-dark: var(--color-green-dark); /* Dark yellowish-olive for middle column */
+    --uw-sol-accent: var(--color-green-primary); /* Bright yellowish accent */
+    --uw-sol-accent-hover: var(--color-green-hover);
+    --uw-sol-text-main: var(--color-black);
+    --uw-sol-text-muted: var(--color-muted);
     --uw-sol-text-light: #ffffff;
     --uw-sol-text-light-muted: rgba(255, 255, 255, 0.75);
     --uw-sol-border-dark: rgba(255, 255, 255, 0.15);
@@ -429,7 +444,7 @@ body {
   /* Button Animations */
   .uw-sol-btn:hover {
     background-color: var(--uw-sol-accent-hover);
-    color: #000000;
+    color: var(--color-black);
     box-shadow: 0 10px 20px rgba(74, 77, 51, 0.2);
   }
 
@@ -621,14 +636,14 @@ body {
 /* --- case_studies_section.html --- */
 /* Base Variables & Scoping */
   .uw-cases-section {
-    --uw-case-bg: #faf9f5; /* Off-white background */
-    --uw-case-primary: #5c6633; /* Dark yellowish-olive */
-    --uw-case-primary-hover: #485226;
-    --uw-case-accent: #eeefdd; /* Light yellowish accent */
-    --uw-case-text-main: #111827;
-    --uw-case-text-muted: #6b7280;
-    --uw-case-border: #e5e7eb;
-    --uw-case-card-bg: #ffffff;
+    --uw-case-bg: var(--color-green-light); /* Off-white background */
+    --uw-case-primary: var(--color-green-primary); /* Dark yellowish-olive */
+    --uw-case-primary-hover: var(--color-green-hover);
+    --uw-case-accent: var(--color-green-soft); /* Light yellowish accent */
+    --uw-case-text-main: var(--color-black);
+    --uw-case-text-muted: var(--color-muted);
+    --uw-case-border: var(--color-border);
+    --uw-case-card-bg: var(--color-white);
     --uw-font-main: 'Inter', sans-serif;
 
     background-color: var(--uw-case-bg);
@@ -727,7 +742,7 @@ body {
     overflow: hidden;
     /* Maintain aspect ratio to keep images consistent */
     aspect-ratio: 4 / 5;
-    background-color: #e5e7eb;
+    background-color: var(--color-border);
     box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
     cursor: pointer;
   }
@@ -942,7 +957,7 @@ body {
     width: 50px;
     height: 35px;
     border-radius: 0.5rem;
-    background-color: #e5e7eb;
+    background-color: var(--color-border);
     object-fit: cover;
   }
   
@@ -1142,15 +1157,15 @@ body {
 /* --- reviews_section.html --- */
 /* Scoped Base & Variables */
   .uw-rev-section {
-    --uw-rev-bg: #faf9f5; /* Very light yellowish off-white background */
-    --uw-rev-accent-light: #f1f5eb; /* Faint yellowish-green */
+    --uw-rev-bg: var(--color-green-light); /* Very light yellowish off-white background */
+    --uw-rev-accent-light: var(--color-green-soft); /* Faint yellowish-green */
     --uw-rev-accent: #e5ecd6; /* Darker yellowish-green for borders/UI */
-    --uw-rev-primary: #5c6633; /* Dark yellowish-olive for buttons/text */
-    --uw-rev-primary-hover: #485226;
+    --uw-rev-primary: var(--color-green-primary); /* Dark yellowish-olive for buttons/text */
+    --uw-rev-primary-hover: var(--color-green-hover);
     
-    --uw-rev-text-main: #111827;
+    --uw-rev-text-main: var(--color-black);
     --uw-rev-text-muted: #4b5563;
-    --uw-rev-border: #e5e7eb;
+    --uw-rev-border: var(--color-border);
     --uw-rev-card-bg: #ffffff;
     --uw-font-main: 'Inter', sans-serif;
 
@@ -1350,7 +1365,7 @@ body {
   .uw-rev-stars {
     display: flex;
     gap: 0.15rem;
-    color: #5c6633;
+    color: var(--color-green-primary);
   }
   .uw-rev-stars svg { width: 16px; height: 16px; fill: currentColor; }
 
@@ -1588,15 +1603,15 @@ body {
 /* Base & Variables */
   .uw-comp2-section {
     /* Color Palette - Yellowish/Olive theme as requested */
-    --uw-c2-accent-light: #eeefdd; /* Provided yellowish color */
+    --uw-c2-accent-light: var(--color-green-soft); /* Provided yellowish color */
     --uw-c2-accent-bg: rgba(238, 239, 221, 0.4); /* Faint version for column bg */
     --uw-c2-primary: #8b9047; /* Dark yellowish-olive for text/buttons to ensure contrast */
     --uw-c2-primary-hover: #767b3c;
     
     --uw-c2-bg: #ffffff;
-    --uw-c2-text-main: #111827;
-    --uw-c2-text-muted: #6b7280;
-    --uw-c2-border: #e5e7eb;
+    --uw-c2-text-main: var(--color-black);
+    --uw-c2-text-muted: var(--color-muted);
+    --uw-c2-border: var(--color-border);
     --uw-c2-card-bg: #ffffff;
     --uw-font-main: 'Inter', sans-serif;
 
@@ -2186,7 +2201,7 @@ body {
     aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
-    background-color: #e5e7eb; /* Fallback for empty SRC */
+    background-color: var(--color-border); /* Fallback for empty SRC */
   }
 
   /* Overlay Details Reveal */
@@ -2385,10 +2400,10 @@ body {
 /* --- faq_section.html --- */
 /* Base Styles & Variables scoped to this section */
   .uw-faq-section {
-    --uw-color-text-main: #111827;
-    --uw-color-text-muted: #6b7280;
-    --uw-color-border: #e5e7eb;
-    --uw-color-bg-active: #f9fafb;
+    --uw-color-text-main: var(--color-black);
+    --uw-color-text-muted: var(--color-muted);
+    --uw-color-border: var(--color-border);
+    --uw-color-bg-active: var(--color-green-light);
     --uw-color-icon-active: #384236; /* Dark greenish from image */
     --uw-font-main: 'Inter', sans-serif;
     
@@ -2620,9 +2635,9 @@ body {
 /* Base & Variables */
   .uw-hero-section {
     --uw-hero-bg: #fdfaf6; /* Very light cream background */
-    --uw-hero-text: #111827;
-    --uw-hero-muted: #6b7280;
-    --uw-hero-border: #e5e7eb;
+    --uw-hero-text: var(--color-black);
+    --uw-hero-muted: var(--color-muted);
+    --uw-hero-border: var(--color-border);
     --uw-hero-primary: #1a1a1a;
     --uw-hero-accent: #dcfce7; /* Light green for badge/button icon */
     --uw-hero-error: #ef4444;
@@ -2636,7 +2651,7 @@ body {
     overflow: hidden;
     position: relative;
     /* Soft background pattern mockup */
-    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
     background-size: 20px 20px;
     background-position: center;
   }
@@ -2671,7 +2686,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: #f1f5eb;
+    background-color: var(--color-green-soft);
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-size: 0.75rem;
@@ -2707,7 +2722,7 @@ body {
     overflow: hidden;
     width: 100%;
     height: 300px; /* Fixed height as requested */
-    background-color: #e5e7eb;
+    background-color: var(--color-border);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
 
@@ -2826,7 +2841,7 @@ body {
   /* Submit Button */
   .uw-hero-submit {
     margin-top: 0.5rem;
-    background-color: #000000;
+    background-color: var(--color-black);
     color: #ffffff;
     border: none;
     padding: 0.75rem;
@@ -2865,7 +2880,7 @@ body {
 
   /* Button Animations */
   .uw-hero-submit:hover {
-    background-color: #000000;
+    background-color: var(--color-black);
     transform: translateY(-2px);
     box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
   }
@@ -2896,7 +2911,7 @@ body {
   .uw-hero-contact-icon {
     width: 48px;
     height: 48px;
-    background-color: #f1f5eb;
+    background-color: var(--color-green-soft);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2932,7 +2947,7 @@ body {
   .uw-hero-feature-icon {
     width: 40px;
     height: 40px;
-    background-color: #f1f5eb;
+    background-color: var(--color-green-soft);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3078,7 +3093,7 @@ body {
 }
 .uw-rev-card-square {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 1rem;
   padding: 2rem;
   display: flex;
@@ -3125,7 +3140,7 @@ body {
 }
 .uw-rev-card-v2 {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 1.5rem;
   padding: 2rem;
   display: flex;
@@ -3147,7 +3162,7 @@ body {
   z-index: 1;
 }
 .uw-rev-v2-time {
-  color: #6b7280;
+  color: var(--color-muted);
   font-size: 0.875rem;
   margin-left: auto;
 }
@@ -3184,11 +3199,11 @@ body {
 }
 .uw-rev-v2-name {
   font-weight: 700;
-  color: #111827;
+  color: var(--color-black);
   font-size: 1rem;
 }
 .uw-rev-v2-loc, .uw-rev-v2-verified {
-  color: #6b7280;
+  color: var(--color-muted);
   font-size: 0.875rem;
 }
 .uw-rev-v2-verified {
@@ -3202,7 +3217,7 @@ body {
   right: -10px;
   font-size: 180px;
   font-weight: 900;
-  color: #f9fafb;
+  color: var(--color-green-light);
   z-index: 0;
   line-height: 1;
   pointer-events: none;
@@ -3263,11 +3278,11 @@ body {
 .uw-rev-stat-val {
   font-size: 2.25rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--color-black);
   line-height: 1;
 }
 .uw-rev-stat-desc {
-  color: #6b7280;
+  color: var(--color-muted);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
