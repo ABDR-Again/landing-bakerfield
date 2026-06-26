@@ -1,13 +1,13 @@
 /* Scoped Variables */
 .uw-h3-section {
-  --uw-h3-accent: #eeefdd; /* Yellowish accent */
-  --uw-h3-accent-dark: #cbd0a8; 
-  --uw-h3-primary: #111827;
-  --uw-h3-primary-hover: #272f3f;
-  --uw-h3-text-main: #111827;
-  --uw-h3-text-muted: #4b5563;
-  --uw-h3-bg-mobile: #fcfbf8;
-  --uw-h3-border: #e5e7eb;
+  --uw-h3-accent: #EAF7EF; /* Yellowish accent */
+  --uw-h3-accent-dark: #CFE5D6; 
+  --uw-h3-primary: #036A2B;
+  --uw-h3-primary-hover: #024D20;
+  --uw-h3-text-main: #111111;
+  --uw-h3-text-muted: #4A4A4A;
+  --uw-h3-bg-mobile: #F6FCF8;
+  --uw-h3-border: #DCEEE2;
   --uw-font-main: 'Inter', sans-serif;
 
   font-family: var(--uw-font-main);
@@ -45,7 +45,7 @@
   object-fit: cover;
   object-position: center bottom;
   display: block;
-  background-color: #e5e7eb; /* Fallback */
+  background-color: #DCEEE2; /* Fallback */
 }
 
 /* Overlay gradient to ensure text readability over any image */
@@ -396,5 +396,5 @@
     padding-top: 1rem;
     border-top: 1px solid var(--uw-h3-border);
   }
-  .uw-h3-mobile-footer svg { width: 16px; height: 16px; color: #4ade80; }
+  .uw-h3-mobile-footer svg { width: 16px; height: 16px; color: #036A2B; }
 }

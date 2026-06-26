@@ -40,7 +40,7 @@ body {
   --color-white: #FFFFFF;
   --color-black: #111111;
   --color-text: #4A4A4A;
-  --color-muted: var(--color-muted);
+  --color-muted: #6B7280;
   --color-green-primary: #036A2B;
   --color-green-dark: #013D1A;
   --color-green-hover: #024D20;
@@ -196,7 +196,7 @@ body {
     gap: 1rem;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
-    border: 1px solid #f3f4f6;
+    border: 1px solid #DCEEE2;
   }
 
   .uw-problem-card:hover {
@@ -219,7 +219,7 @@ body {
   }
 
   .uw-problem-card:hover .uw-problem-icon-wrap {
-    background-color: #e2eccf;
+    background-color: #CFE5D6;
   }
 
   .uw-problem-icon-wrap svg {
@@ -259,7 +259,7 @@ body {
     bottom: 0;
     width: 60%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 Q25,50 50,80 T100,80 T150,80 T200,80' fill='none' stroke='%23e0e8cd' stroke-width='1.5'/%3E%3Cpath d='M0,90 Q25,60 50,90 T100,90 T150,90 T200,90' fill='none' stroke='%23e0e8cd' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 Q25,50 50,80 T100,80 T150,80 T200,80' fill='none' stroke='%23CFE5D6' stroke-width='1.5'/%3E%3Cpath d='M0,90 Q25,60 50,90 T100,90 T150,90 T200,90' fill='none' stroke='%23CFE5D6' stroke-width='1.5'/%3E%3C/svg%3E");
     background-size: cover;
     background-position: center right;
     opacity: 0.8;
@@ -391,7 +391,7 @@ body {
     align-items: center;
     padding: 0.4rem 1rem;
     background-color: #ffffff;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #DCEEE2;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 700;
@@ -445,7 +445,7 @@ body {
   .uw-sol-btn:hover {
     background-color: var(--uw-sol-accent-hover);
     color: var(--color-black);
-    box-shadow: 0 10px 20px rgba(74, 77, 51, 0.2);
+    box-shadow: 0 10px 20px rgba(3, 106, 43, 0.15);
   }
 
   .uw-sol-btn:hover svg {
@@ -454,7 +454,7 @@ body {
 
   .uw-sol-btn:active {
     transform: scale(0.96) translateY(2px); /* Click animation */
-    box-shadow: 0 4px 10px rgba(74, 77, 51, 0.2);
+    box-shadow: 0 4px 10px rgba(3, 106, 43, 0.15);
   }
 
 
@@ -488,7 +488,7 @@ body {
 
   /* Service Hover Animation */
   .uw-sol-step:hover {
-    background-color: rgba(210, 218, 138, 0.08); /* Faint yellowish highlight */
+    background-color: rgba(3, 106, 43, 0.06); /* Faint yellowish highlight */
     transform: translateX(8px);
   }
 
@@ -551,7 +551,7 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    background-color: #d1d5db; /* Fallback for empty SRC */
+    background-color: #DCEEE2; /* Fallback for empty SRC */
   }
 
   /* --- RESPONSIVE DESIGN --- */
@@ -1006,7 +1006,7 @@ body {
   .uw-cases-btn:hover {
     background-color: var(--uw-case-primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(92, 102, 51, 0.2);
+    box-shadow: 0 6px 12px rgba(3, 106, 43, 0.15);
   }
 
   .uw-cases-btn:active {
@@ -1159,12 +1159,12 @@ body {
   .uw-rev-section {
     --uw-rev-bg: var(--color-green-light); /* Very light yellowish off-white background */
     --uw-rev-accent-light: var(--color-green-soft); /* Faint yellowish-green */
-    --uw-rev-accent: #e5ecd6; /* Darker yellowish-green for borders/UI */
+    --uw-rev-accent: #DCEEE2; /* Darker yellowish-green for borders/UI */
     --uw-rev-primary: var(--color-green-primary); /* Dark yellowish-olive for buttons/text */
     --uw-rev-primary-hover: var(--color-green-hover);
     
     --uw-rev-text-main: var(--color-black);
-    --uw-rev-text-muted: #4b5563;
+    --uw-rev-text-muted: #4A4A4A;
     --uw-rev-border: var(--color-border);
     --uw-rev-card-bg: #ffffff;
     --uw-font-main: 'Inter', sans-serif;
@@ -1539,7 +1539,7 @@ body {
 
   .uw-rev-btn:hover {
     background-color: var(--uw-rev-primary-hover);
-    box-shadow: 0 10px 20px rgba(92, 102, 51, 0.3);
+    box-shadow: 0 10px 20px rgba(3, 106, 43, 0.2);
   }
 
   .uw-rev-btn:hover svg {
@@ -1548,7 +1548,7 @@ body {
 
   .uw-rev-btn:active {
     transform: scale(0.96) translateY(2px);
-    box-shadow: 0 4px 10px rgba(92, 102, 51, 0.2);
+    box-shadow: 0 4px 10px rgba(3, 106, 43, 0.15);
   }
 
   /* --- RESPONSIVE DESIGN --- */
@@ -1604,9 +1604,9 @@ body {
   .uw-comp2-section {
     /* Color Palette - Yellowish/Olive theme as requested */
     --uw-c2-accent-light: var(--color-green-soft); /* Provided yellowish color */
-    --uw-c2-accent-bg: rgba(238, 239, 221, 0.4); /* Faint version for column bg */
-    --uw-c2-primary: #8b9047; /* Dark yellowish-olive for text/buttons to ensure contrast */
-    --uw-c2-primary-hover: #767b3c;
+    --uw-c2-accent-bg: rgba(234, 247, 239, 0.4); /* Faint version for column bg */
+    --uw-c2-primary: #036A2B; /* Dark yellowish-olive for text/buttons to ensure contrast */
+    --uw-c2-primary-hover: #024D20;
     
     --uw-c2-bg: #ffffff;
     --uw-c2-text-main: var(--color-black);
@@ -1622,7 +1622,7 @@ body {
     overflow: hidden;
     position: relative;
     /* Very faint dotted background pattern from image */
-    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-image: radial-gradient(#DCEEE2 1px, transparent 1px);
     background-size: 32px 32px;
     background-position: top right;
   }
@@ -1793,7 +1793,7 @@ body {
     /* Creates the separated tab look */
     margin: 0 8px;
     padding: 1.5rem 1rem;
-    box-shadow: 0 10px 15px -3px rgba(139, 144, 71, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(3, 106, 43, 0.2);
   }
 
   .uw-comp2-th.bhs-header svg {
@@ -1832,10 +1832,10 @@ body {
 
   /* Row Hover Effect */
   .uw-comp2-row:hover .uw-comp2-td {
-    background-color: #fafafa;
+    background-color: #F6FCF8;
   }
   .uw-comp2-row:hover .uw-comp2-td.bhs-cell {
-    background-color: rgba(238, 239, 221, 0.8);
+    background-color: rgba(234, 247, 239, 0.6);
   }
 
   /* Table Cells */
@@ -1901,8 +1901,8 @@ body {
   .uw-icon-cross {
     width: 24px;
     height: 24px;
-    border: 1px solid #d1d5db;
-    color: #9ca3af;
+    border: 1px solid #DCEEE2;
+    color: #6B7280;
     background-color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -1983,12 +1983,12 @@ body {
   .uw-comp2-btn:hover {
     background-color: var(--uw-c2-primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(139, 144, 71, 0.3);
+    box-shadow: 0 8px 20px rgba(3, 106, 43, 0.2);
   }
 
   .uw-comp2-btn:active {
     transform: translateY(1px);
-    box-shadow: 0 4px 6px rgba(139, 144, 71, 0.2);
+    box-shadow: 0 4px 6px rgba(3, 106, 43, 0.15);
   }
 
   /* --- RESPONSIVE DESIGN --- */
@@ -2064,13 +2064,13 @@ body {
 /* --- team_section.html --- */
 /* Base Variables & Scoping */
   .uw-team-section {
-    --uw-team-bg: #f8f7f3; /* Light cream background matching the image */
-    --uw-team-primary: #6c7843; /* Olive/yellowish-green from the image */
-    --uw-team-primary-hover: #555f35;
-    --uw-team-accent: #eef1e6;
-    --uw-team-text-main: #1a1a1a;
-    --uw-team-text-muted: #525252;
-    --uw-team-border: #e5e5e5;
+    --uw-team-bg: #F6FCF8; /* Light cream background matching the image */
+    --uw-team-primary: #036A2B; /* Olive/yellowish-green from the image */
+    --uw-team-primary-hover: #024D20;
+    --uw-team-accent: #EAF7EF;
+    --uw-team-text-main: #111111;
+    --uw-team-text-muted: #4A4A4A;
+    --uw-team-border: #DCEEE2;
     --uw-font-main: 'Inter', sans-serif;
 
     background-color: var(--uw-team-bg);
@@ -2192,7 +2192,7 @@ body {
     aspect-ratio: 4 / 5; 
     object-fit: cover;
     display: block;
-    background-color: #d1d5db; /* Fallback for empty SRC */
+    background-color: #DCEEE2; /* Fallback for empty SRC */
   }
 
   .uw-team-card.small .uw-team-img {
@@ -2323,7 +2323,7 @@ body {
   /* Button Hover & Click Animations */
   .uw-team-btn:hover {
     background-color: var(--uw-team-primary-hover);
-    box-shadow: 0 10px 20px rgba(108, 120, 67, 0.3);
+    box-shadow: 0 10px 20px rgba(3, 106, 43, 0.2);
   }
 
   .uw-team-btn:hover .uw-team-btn-icon {
@@ -2332,7 +2332,7 @@ body {
 
   .uw-team-btn:active {
     transform: scale(0.96) translateY(2px); /* Click animation */
-    box-shadow: 0 4px 10px rgba(108, 120, 67, 0.2);
+    box-shadow: 0 4px 10px rgba(3, 106, 43, 0.15);
   }
 
   /* --- RESPONSIVE DESIGN --- */
@@ -2404,7 +2404,7 @@ body {
     --uw-color-text-muted: var(--color-muted);
     --uw-color-border: var(--color-border);
     --uw-color-bg-active: var(--color-green-light);
-    --uw-color-icon-active: #384236; /* Dark greenish from image */
+    --uw-color-icon-active: #036A2B; /* Dark greenish from image */
     --uw-font-main: 'Inter', sans-serif;
     
     font-family: var(--uw-font-main);
@@ -2469,7 +2469,7 @@ body {
     border-radius: 1rem;
     overflow: hidden;
     /* Aspect ratio fallback for empty image */
-    background-color: #f3f4f6;
+    background-color: #DCEEE2;
     width: 100%;
     aspect-ratio: 16 / 10;
   }
@@ -2634,12 +2634,12 @@ body {
 /* --- hero_form_section.html --- */
 /* Base & Variables */
   .uw-hero-section {
-    --uw-hero-bg: #fdfaf6; /* Very light cream background */
+    --uw-hero-bg: #F6FCF8; /* Very light cream background */
     --uw-hero-text: var(--color-black);
     --uw-hero-muted: var(--color-muted);
     --uw-hero-border: var(--color-border);
-    --uw-hero-primary: #1a1a1a;
-    --uw-hero-accent: #dcfce7; /* Light green for badge/button icon */
+    --uw-hero-primary: #036A2B;
+    --uw-hero-accent: #EAF7EF; /* Light green for badge/button icon */
     --uw-hero-error: #ef4444;
     --uw-hero-error-bg: #fef2f2;
     --uw-font-main: 'Inter', sans-serif;
@@ -2770,7 +2770,7 @@ body {
   .uw-hero-input-icon {
     position: absolute;
     left: 1rem;
-    color: #9ca3af;
+    color: #6B7280;
     width: 18px;
     height: 18px;
     pointer-events: none;
@@ -2796,21 +2796,21 @@ body {
     right: 1rem;
     width: 16px;
     height: 16px;
-    color: #9ca3af;
+    color: #6B7280;
     pointer-events: none;
   }
 
   /* Form Hover & Focus Animations */
   .uw-hero-input:hover,
   .uw-hero-select:hover {
-    border-color: #9ca3af;
+    border-color: #6B7280;
   }
 
   .uw-hero-input:focus,
   .uw-hero-select:focus {
     outline: none;
     border-color: var(--uw-hero-primary);
-    box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.05);
+    box-shadow: 0 0 0 4px rgba(3, 106, 43, 0.1);
     transform: translateY(-1px);
   }
 
@@ -2860,7 +2860,7 @@ body {
   }
 
   .uw-hero-submit-icon {
-    background-color: #d1dfab; /* Matches image */
+    background-color: #EAF7EF;
     color: var(--uw-hero-primary);
     width: 28px;
     height: 28px;
@@ -3037,7 +3037,7 @@ body {
   @media (max-width: 767px) {
     .uw-hero-section {
       padding: 3rem 1.25rem;
-      background: #ffffff; /* Simplify background for mobile */
+      background: #FFFFFF; /* Simplify background for mobile */
     }
 
     .uw-hero-container {
@@ -3112,7 +3112,7 @@ body {
 .uw-rev-square-text {
   font-size: 1rem;
   line-height: 1.6;
-  color: #374151;
+  color: #4A4A4A;
   margin-bottom: 1.5rem;
   flex-grow: 1;
   display: flex;
@@ -3169,7 +3169,7 @@ body {
 .uw-rev-v2-text {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #1f2937;
+  color: #111111;
   margin-bottom: 2.5rem;
   flex-grow: 1;
   z-index: 1;
@@ -3185,8 +3185,8 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #f1f4e9;
-  color: #556b2f;
+  background-color: #EAF7EF;
+  color: #036A2B;
   font-weight: 800;
   font-size: 1.25rem;
   display: flex;
@@ -3225,7 +3225,7 @@ body {
 }
 /* Stats Banner */
 .uw-rev-stats-banner {
-  background-color: #f4f6ef;
+  background-color: #F6FCF8;
   border-radius: 1.5rem;
   padding: 2.5rem 3rem;
   display: flex;
@@ -3242,7 +3242,7 @@ body {
 .uw-rev-stat-icon-solid {
   width: 70px;
   height: 70px;
-  background-color: #556b2f;
+  background-color: #036A2B;
   color: white;
   font-weight: 800;
   font-size: 2.25rem;
@@ -3254,8 +3254,8 @@ body {
 .uw-rev-stat-icon-hollow {
   width: 70px;
   height: 70px;
-  border: 2px solid #556b2f;
-  color: #556b2f;
+  border: 2px solid #036A2B;
+  color: #036A2B;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3266,7 +3266,7 @@ body {
   flex-direction: column;
 }
 .uw-rev-stat-label {
-  color: #4b5563;
+  color: #4A4A4A;
   font-size: 0.875rem;
   margin-bottom: 0.25rem;
 }
@@ -3289,13 +3289,13 @@ body {
 .uw-rev-stat-divider {
   width: 1px;
   height: 80px;
-  background-color: #d1d5db;
+  background-color: #DCEEE2;
 }
 .uw-rev-stat-spacer {
   flex-grow: 1;
 }
 .uw-rev-stat-btn {
-  background-color: #556b2f;
+  background-color: #036A2B;
   color: white;
   padding: 1.25rem 2rem;
   border-radius: 0.75rem;
@@ -3307,7 +3307,7 @@ body {
   transition: background-color 0.3s ease;
 }
 .uw-rev-stat-btn:hover {
-  background-color: #3f4f22;
+  background-color: #024D20;
 }
 @media (max-width: 1024px) {
   .uw-rev-grid-v2 {
