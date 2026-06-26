@@ -33,6 +33,7 @@
 body {
   margin: 0;
   padding: 0;
+  padding-top: 56px; /* Space for fixed navbar */
   font-family: 'Inter', sans-serif;
 }
 
@@ -347,7 +348,7 @@ body {
   .uw-sol-section {
     --uw-sol-bg-light: var(--color-white); /* Off-white for left column */
     --uw-sol-bg-dark: var(--color-green-dark); /* Dark yellowish-olive for middle column */
-    --uw-sol-accent: var(--color-green-primary); /* Bright yellowish accent */
+    --uw-sol-accent: #D7EBDD; /* Light green for contrast on dark bg */
     --uw-sol-accent-hover: var(--color-green-hover);
     --uw-sol-text-main: var(--color-black);
     --uw-sol-text-muted: var(--color-muted);
@@ -444,8 +445,8 @@ body {
   /* Button Animations */
   .uw-sol-btn:hover {
     background-color: var(--uw-sol-accent-hover);
-    color: var(--color-black);
-    box-shadow: 0 10px 20px rgba(3, 106, 43, 0.15);
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(3, 106, 43, 0.2);
   }
 
   .uw-sol-btn:hover svg {

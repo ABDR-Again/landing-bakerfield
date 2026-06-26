@@ -1,3 +1,31 @@
+/* Fixed Navigation Bar */
+.uw-fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 2rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.uw-nav-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.uw-nav-logo-link:hover {
+  opacity: 0.8;
+}
+
 /* Scoped Variables */
 .uw-h3-section {
   --uw-h3-accent: #EAF7EF; /* Yellowish accent */
@@ -28,6 +56,7 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  padding-top: calc(56px + 2rem); /* Account for fixed nav */
 }
 
 /* Full Viewport Image */
@@ -52,7 +81,7 @@
 .uw-h3-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 35%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.4) 80%, transparent 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -185,28 +214,28 @@
   color: var(--uw-h3-text-main);
 }
 
-/* Hover & Click Animations (Alternating colors as requested) */
+/* Hover & Click Animations */
 .uw-h3-btn.primary:hover {
-  background-color: var(--uw-h3-accent);
-  color: var(--uw-h3-primary);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  background-color: #024D20;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(3,106,43,0.2);
 }
 .uw-h3-btn.primary:hover .uw-h3-btn-icon {
-  background-color: var(--uw-h3-primary);
-  color: #ffffff;
+  background-color: #EAF7EF;
+  color: #024D20;
   transform: rotate(45deg);
 }
 
 .uw-h3-btn.secondary:hover {
-  background-color: var(--uw-h3-primary);
+  background-color: #036A2B;
   color: #ffffff;
-  border-color: var(--uw-h3-primary);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: #036A2B;
+  box-shadow: 0 10px 20px rgba(3,106,43,0.2);
 }
 .uw-h3-btn.secondary:hover .uw-h3-btn-icon {
-  background-color: var(--uw-h3-accent);
-  color: var(--uw-h3-primary);
-  border-color: var(--uw-h3-accent);
+  background-color: #EAF7EF;
+  color: #036A2B;
+  border-color: #EAF7EF;
   transform: rotate(45deg);
 }
 
