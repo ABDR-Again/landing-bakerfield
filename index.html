@@ -542,11 +542,77 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   <!-- Fixed Navigation Bar -->
-  <nav class="uw-fixed-nav" id="uwFixedNav" style="justify-content: space-between;">
-    <a href="https://bakersfieldhomesolutions.com" class="uw-nav-logo-link" aria-label="Bakersfield Home Solutions - Go to homepage">
-      <img src="./assets/optimized/logo-br.webp" alt="Bakersfield Home Solutions" width="240" height="60" style="height: 60px; width: auto;">
+  <style>
+    .bhs-top-strip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 99999;
+      background-color: #ffffff;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      box-sizing: border-box;
+    }
+    .bhs-top-strip-logo {
+      display: flex;
+      align-items: center;
+    }
+    .bhs-top-strip-logo img {
+      height: 50px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+    }
+    .bhs-top-strip-btn {
+      background-color: #036A2B;
+      color: #ffffff !important;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      white-space: nowrap;
+      transition: background-color 0.2s;
+    }
+    .bhs-top-strip-btn:hover {
+      background-color: #024D20;
+    }
+    @media (max-width: 600px) {
+      .bhs-top-strip {
+        padding: 10px 16px;
+      }
+      .bhs-top-strip-logo img {
+        height: 40px;
+        max-width: 160px;
+      }
+      .bhs-top-strip-btn {
+        padding: 8px 14px;
+        font-size: 0.875rem;
+      }
+    }
+    @media (max-width: 380px) {
+      .bhs-top-strip {
+        padding: 8px 12px;
+      }
+      .bhs-top-strip-logo img {
+        height: 32px;
+        max-width: 130px;
+      }
+      .bhs-top-strip-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+  <nav class="bhs-top-strip">
+    <a href="https://bakersfieldhomesolutions.com" class="bhs-top-strip-logo" aria-label="Bakersfield Home Solutions - Go to homepage">
+      <img src="./assets/optimized/logo-br.webp" alt="Bakersfield Home Solutions" width="240" height="60">
     </a>
-    <a href="tel:6615312500" style="font-size: 1.125rem; font-weight: 700; color: #111111; text-decoration: none; padding: 0.5rem 1rem; border: 2px solid #036A2B; border-radius: 9999px; transition: all 0.3s ease;">
+    <a href="tel:6615312500" class="bhs-top-strip-btn">
       Call 661-531-2500
     </a>
   </nav>
