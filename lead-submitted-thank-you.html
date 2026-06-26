@@ -58,6 +58,23 @@
     </div>
     <h1>Lead Submitted!</h1>
     <p>Thank you.</p>
+    <p id="redirect-text" style="font-size: 1rem; color: #6b7280; margin-top: 1rem;">You will be redirected to our website in <span id="countdown">3</span> seconds...</p>
   </div>
+  
+  <script>
+    let seconds = 3;
+    const countdownEl = document.getElementById('countdown');
+    const redirectUrl = 'https://bakersfieldhomesolutions.com/';
+    
+    const interval = setInterval(() => {
+      seconds--;
+      if (countdownEl) countdownEl.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = redirectUrl;
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
