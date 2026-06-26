@@ -1728,102 +1728,246 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- --- team_section.html --- -->
-<section class="uw-team-section">
-  <div class="uw-team-container">
-    
-    <!-- Mobile Header (Hidden on Desktop) -->
-    <div class="uw-team-header-mobile">
-      <div class="uw-team-badge">Our Team</div>
-      <h2 class="uw-team-title">Meet the Local Team Behind Bakersfield Home Solutions</h2>
-      <p class="uw-team-desc">We're a local team with deep roots in Bakersfield and a passion for helping homeowners move forward with confidence.</p>
-    </div>
+<style>
+    /* Scoped CSS for the unique Meet the Team section */
+    .mt-unique-team-section {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        text-align: center;
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
 
-    <!-- Main Grid Layout -->
-    <div class="uw-team-grid">
-      
-      <!-- Left: Large Image Card -->
-      <div class="uw-team-left">
-        <div class="uw-team-card large uw-anim-target">
-          <!-- Empty SRC, cover applied via CSS -->
-          <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-1.webp" alt="Javier Martinez" class="uw-team-img">
-          
-          <div class="uw-team-details">
-            <h4>Javier Martinez</h4>
-            <p>Founder & Owner</p>
-          </div>
-        </div>
-      </div>
+    .mt-unique-team-section *, .mt-unique-team-section *::before, .mt-unique-team-section *::after {
+        box-sizing: inherit;
+    }
 
-      <!-- Right: Desktop Header & Small Cards -->
-      <div class="uw-team-right">
+    .mt-unique-header {
+        margin-bottom: 60px; /* Space for the images to pop out into */
+    }
+
+    .mt-unique-subtitle {
+        color: #127138;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .mt-unique-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        color: #111111;
+        margin: 0 0 15px 0;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+
+    .mt-unique-highlight {
+        color: #127138;
+    }
+
+    .mt-unique-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .mt-unique-line {
+        height: 1px;
+        width: 45px;
+        background-color: #127138;
+    }
+
+    .mt-unique-house-icon {
+        display: block;
+    }
+
+    .mt-unique-cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: nowrap;
+    }
+
+    .mt-unique-card-wrapper {
+        flex: 1;
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mt-unique-card-box {
+        position: relative;
+        width: 100%;
+        height: 290px;
+        border: 1.5px solid #a8d0b2;
+        border-radius: 16px;
+        margin-bottom: 25px;
+        background-color: transparent;
+    }
+
+    /* This styling ensures the image anchors to the bottom of the bordered box 
+       and scales up over the top border, creating the 3D pop-out effect.
+    */
+    .mt-unique-person-img {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 118%; /* Image is taller than the box to pop out */
+        width: auto;
+        max-width: 135%; 
+        object-fit: contain;
+        object-position: bottom center;
+        z-index: 2;
+        display: block;
+    }
+
+    .mt-unique-name {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: #111111;
+        margin: 0 0 8px 0;
+    }
+
+    .mt-unique-role {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #127138;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .mt-unique-footer-text {
+        margin-top: 50px;
+        font-size: 1.15rem;
+        color: #444444;
+        line-height: 1.6;
+        font-weight: 500;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Tablet and Mobile Responsiveness */
+    @media (max-width: 900px) {
+        .mt-unique-title {
+            font-size: 2.6rem;
+        }
+        .mt-unique-card-box {
+            height: 260px;
+        }
+        .mt-unique-cards-container {
+            gap: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mt-unique-team-section {
+            padding: 50px 15px;
+        }
+        .mt-unique-title {
+            font-size: 2.2rem;
+        }
+        .mt-unique-cards-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 70px; /* Increased gap on mobile so the pop-out image doesn't cover the text above */
+        }
+        .mt-unique-header {
+            margin-bottom: 50px;
+        }
+        .mt-unique-card-wrapper {
+            max-width: 360px;
+        }
+        .mt-unique-card-box {
+            height: 250px;
+        }
+        .mt-unique-footer-text {
+            font-size: 1.05rem;
+        }
+    }
+
+    .mt-call-button {
+        display: inline-block;
+        background-color: #036A2B;
+        color: #ffffff !important;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        text-decoration: none;
+        padding: 15px 35px;
+        border-radius: 9999px;
+        box-shadow: 0 4px 14px rgba(3, 106, 43, 0.4);
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        cursor: pointer;
+    }
+    .mt-call-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(3, 106, 43, 0.5);
+    }
+    .mt-call-button:active {
+        transform: translateY(2px) scale(0.96);
+        box-shadow: 0 2px 8px rgba(3, 106, 43, 0.4);
+    }
+
+</style>
+
+<section class="mt-unique-team-section">
+    <div class="mt-unique-header">
+        <span class="mt-unique-subtitle">Meet The Team</span>
+        <h2 class="mt-unique-title">Trusted Local <span class="mt-unique-highlight">Home Buyers</span></h2>
         
-        <!-- Desktop Header (Hidden on Mobile) -->
-        <div class="uw-team-header-desktop">
-          <div class="uw-team-badge uw-anim-header">Our Team</div>
-          <h2 class="uw-team-title uw-anim-header">Meet the Local Team Behind Bakersfield Home Solutions</h2>
-          <p class="uw-team-desc uw-anim-header">We're a local team with deep roots in Bakersfield and a passion for helping homeowners move forward with confidence. Our process is simple, transparent, and designed around your needs.</p>
+        <div class="mt-unique-divider">
+            <span class="mt-unique-line"></span>
+            <svg class="mt-unique-house-icon" viewBox="0 0 24 16" width="30" height="20" aria-hidden="true">
+                <polyline points="1 14 12 3 23 14" fill="none" stroke="#127138" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="10" y="8.5" width="4" height="4" fill="#127138" />
+            </svg>
+            <span class="mt-unique-line"></span>
+        </div>
+    </div>
+
+    <div class="mt-unique-cards-container">
+        
+        <!-- Card 1 -->
+        <div class="mt-unique-card-wrapper">
+            <div class="mt-unique-card-box">
+                <!-- Add your image URL to the src attribute below -->
+                <img src="./assets/optimized/troy-optimized.webp" alt="Troy" class="mt-unique-person-img" />
+            </div>
+            <h3 class="mt-unique-name">Troy</h3>
+            <p class="mt-unique-role">Co-Founder & Home Buyer</p>
         </div>
 
-        <!-- 3 Small Cards -->
-        <div class="uw-team-small-cards">
-          
-          <div class="uw-team-card small uw-anim-target">
-            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-2.webp" alt="Amanda Ruiz" class="uw-team-img">
-            <div class="uw-team-details">
-              <h4>Amanda Ruiz</h4>
-              <p>Seller Support</p>
+        <!-- Card 2 -->
+        <div class="mt-unique-card-wrapper">
+            <div class="mt-unique-card-box">
+                <!-- Add your image URL to the src attribute below -->
+                <img src="./assets/optimized/ron-optimized.webp" alt="Ron" class="mt-unique-person-img" />
             </div>
-          </div>
-
-          <div class="uw-team-card small uw-anim-target">
-            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-3.webp" alt="Daniel Thompson" class="uw-team-img">
-            <div class="uw-team-details">
-              <h4>Daniel Thompson</h4>
-              <p>Property Acquisitions</p>
-            </div>
-          </div>
-
-          <div class="uw-team-card small uw-anim-target">
-            <img loading="lazy" decoding="async" width="500" height="650" src="./assets/optimized/team-4.webp" alt="Tiffany Lee" class="uw-team-img">
-            <div class="uw-team-details">
-              <h4>Tiffany Lee</h4>
-              <p>Closing Coordinator</p>
-            </div>
-          </div>
-
+            <h3 class="mt-unique-name">Ron</h3>
+            <p class="mt-unique-role">Co-Founder & Home Buyer</p>
         </div>
-      </div>
 
     </div>
 
-    <!-- Bottom Banner -->
-    <div class="uw-team-banner uw-anim-banner">
-      <!-- Hidden on mobile -->
-      <div class="uw-team-contact">
-        <div class="uw-team-contact-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-        </div>
-        <div class="uw-team-contact-text">
-          <p>Have questions? Call us anytime.</p>
-          <h5>(661) 531-2500</h5>
-        </div>
-      </div>
+    <p class="mt-unique-footer-text">
+        We're local, experienced, and committed to making<br>
+        selling your home simple, fast, and stress-free.
+    </p>
 
-      <!-- Hidden on mobile -->
-      <div class="uw-team-banner-center">
-        We make selling your home simple, stress-free, and always with your best interest in mind.
-      </div>
-
-      <!-- Button (Visible on all devices, redirects to call) -->
-      <a href="tel:6615312500" class="uw-team-btn">
-        Call 661-531-2500
-        <div class="uw-team-btn-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-        </div>
-      </a>
+    <div style="margin-top: 40px; display: flex; justify-content: center;">
+        <a href="tel:6615312500" class="mt-call-button">Call 661-531-2500</a>
     </div>
-
-  </div>
 </section>
 
 <!-- --- faq_section.html --- -->
