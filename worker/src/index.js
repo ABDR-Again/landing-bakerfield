@@ -103,6 +103,7 @@ export default {
       const phone = clean(body.phone);
       const timeline = clean(body.timeline);
       const sellingSituation = clean(body.selling_situation);
+      const address = clean(body.address);
 
       if (!email && !phone) {
         return jsonResponse(
@@ -121,6 +122,8 @@ export default {
 
       const description = `
 New seller lead from Bakersfield Home Solutions landing page.
+
+Property Address: ${address || "Not provided"}
 
 Full Name: ${fullName}
 Email: ${email}
@@ -166,6 +169,12 @@ FBCLID: ${clean(body.fbclid)}
             sellingSituation ? `Situation: ${sellingSituation}` : ""
           ].filter(Boolean)
         },
+
+        ...(address && {
+          property: {
+            address: address
+          }
+        }),
 
         campaign: {
           source: clean(body.utm_source) || "google",
